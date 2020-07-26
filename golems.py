@@ -210,4 +210,10 @@ golems_cards = {'golem_1': {'points': 6,
                                               'blue': 2,
                                               'pink': 0
                                               }},
+                'golem_36': {'points': 10,
+                             'requirements': {'yellow': 0,
+                                              'green': 0,
+                                              'blue': 5,
+                                              'pink': 0
+                                              }},
                 }
