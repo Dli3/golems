@@ -1,5 +1,6 @@
 from golems import golems_cards
 import random
+from action_cards import actions
 
 
 class Player():
@@ -13,6 +14,7 @@ class Player():
                              'pink': 0}
         self.golems = 0
         self.hand = []
+        self.discard_pile = []
 
 
 player = Player(0, 0)
@@ -37,3 +39,8 @@ print(a.values())
 # player.crystal_cart['yellow'] -= a['yellow']
 
 print(player.crystal_cart)
+
+print(actions)
+
+f = actions['card_1']['action'](player.crystal_cart)
+print(f)
