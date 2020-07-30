@@ -1,130 +1,338 @@
-def plus_two_yellow(card):
+def plus_two_yellow(crystal_cart):
     print('+ 2 yellow')
-    card['yellow'] += 2
-    return card
+    crystal_cart['yellow'] += 2
+    return crystal_cart
 
 
-def upgrade_two(card):
-    print('Upgrade +2 or +1 +1')
+def upgrade_two(crystal_cart):
+    print('Select one crystal to upgrade.')
     upgrade1 = input().lower()
-    card[f'{upgrade1}'] += 2
-    return card
+    crystal_cart[f'{upgrade1}'] += 1
+    print("Select second crystal to upgrade.")
+    upgrade1 = input().lower()
+    crystal_cart[f'{upgrade1}'] += 1
+    return crystal_cart
 
 
-def
+def minus2yellow_plus2green(crystal_cart):
+    print('Trade 2 yellows for 2 greens: -2 yellow + 2 green')
+    crystal_cart['yellow'] += -2
+    crystal_cart['green'] += 2
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 0
+    return crystal_cart
 
-# actions = {
-#     'card_1': {'description': 'Create 2 yellow crystal: +2 yellow',
-#                'action': action_2gold},
 
-#     'card_2': {'description': 'Create 2 yellow crystal: +2 yellow',
-#                'action': },
+def minus2yellow_plus1blue(crystal_cart):
+    print('Trade 2 yellows for 1 blue: -2 yellow + 1 blue')
+    crystal_cart['yellow'] += -2
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 1
+    crystal_cart['pink'] += 0
+    return crystal_cart
 
-#     'card_3': {'description': 'Create 2 yellow crystal: +2 yellow',
-#                'action':},
 
-#     'card_4': {'description': 'Create 2 yellow crystal: +2 yellow',
-#                'action':},
+def minus3yellow_plus1pink(crystal_cart):
+    print('Trade 3 yellows for 1 pink: -3 yellow + 1 pink')
+    crystal_cart['yellow'] += -3
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 1
+    return crystal_cart
 
-#     'card_5': {'description': 'Create 2 yellow crystal: +2 yellow',
-#                'action':},
 
-#     'card_6': {'description': 'Upgrade 1 crystal twice or two crystals once: +2 upgrades',
-#                'action':},
+def minus3yellow_plus1green1blue(crystal_cart):
+    print('Trade 3 yellow for 1 green and 1 blue: -3 yellow + 1 green + 1 blue')
+    crystal_cart['yellow'] += -3
+    crystal_cart['green'] += 1
+    crystal_cart['blue'] += 1
+    crystal_cart['pink'] += 0
+    return crystal_cart
 
-#     'card_7': {'description': 'Upgrade 1 crystal twice or two crystals once: +2 upgrades',
-#                'action':},
 
-#     'card_8': {'description': 'Upgrade 1 crystal twice or two crystals once: +2 upgrades',
-#                'action':},
+def minus4yellow_plus1blue1pink(crystal_cart):
+    print('Trade 4 yellow for 1 blue and 1 pink: -4 yellow + 1 blue + 1 pink')
+    crystal_cart['yellow'] += -4
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 1
+    crystal_cart['pink'] += 1
+    return crystal_cart
 
-#     'card_9': {'description': 'Upgrade 1 crystal twice or two crystals once: +2 upgrades',
-#                'action':},
 
-#     'card_10': {'description': 'Upgrade 1 crystal twice or two crystals once: +2 upgrades',
-#                 'action': },
+def minus5yellow_plus2pink(crystal_cart):
+    print('Trade 5 yellow for 2 pink: -5 yellow + 2 pink')
+    crystal_cart['yellow'] += -5
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 2
+    return crystal_cart
 
-#     'card_11': {'description': 'Trade 2 yellows for 2 greens: -2 yellow + 2 green',
-#                 'action': },
 
-#     'card_12': {'description': 'Trade 2 yellows for 1 blue: -2 yellow + 1 blue',
-#                 'action': },
+def minus5yellow_plus3blue(crystal_cart):
+    print('Trade 5 yellow for 3 blue: -5 yellow + 3 blue')
+    crystal_cart['yellow'] += -5
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 3
+    crystal_cart['pink'] += 0
+    return crystal_cart
 
-#     'card_13': {'description': 'Trade 3 yellows for 1 pink: -3 yellow + 1 pink',
-#                 'action': },
 
-#     'card_14': {'description': 'Trade 3 yellow for 1 green and 1 blue: -3 yellow + 1 green + 1 blue',
-#                 'action': },
+def minus4yellow_plus2blue(crystal_cart):
+    print('Trade 4 yellow for 2 blue: -4 yellow + 2 blue')
+    crystal_cart['yellow'] += -4
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 2
+    crystal_cart['pink'] += 0
+    return crystal_cart
 
-#     'card_15': {'description': 'Trade 4 yellow for 1 blue and 1 pink: -4 yellow + 1 blue + 1 pink',
-#                 'action': },
 
-#     'card_16': {'description': 'Trade 5 yellow for 2 pink: -5 yellow + 2 pink',
-#                 'action': },
+def minus3yellow_plus3green(crystal_cart):
+    print('Trade 3 yellow for 3 green: -3 yellow + 3 green')
+    crystal_cart['yellow'] += -3
+    crystal_cart['green'] += 3
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 0
+    return crystal_cart
 
-#     'card_17': {'description': 'Trade 5 yellow for 3 blue: -5 yellow + 3 blue',
-#                 'action': },
 
-#     'card_18': {'description': 'Trade 4 yellow for 2 blue: -4 yellow + 2 blue',
-#                 'action': },
+def minus1green_plus3yellow(crystal_cart):
+    print('Trade 1 green for 3 yellow: -1 green + 3 yellow')
+    crystal_cart['yellow'] += 3
+    crystal_cart['green'] += -1
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 0
+    return crystal_cart
 
-#     'card_19': {'description': 'Trade 3 yellow for 3 green: -3 yellow + 3 green',
-#                 'action': },
 
-#     'card_20': {'description': 'Trade 1 green for 3 yellow: -1 green + 3 yellow',
-#                 'action': },
+def minus2green_plus2blue(crystal_cart):
+    print('Trade 2 green for 2 blue: -2 green + 2 blue')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += -2
+    crystal_cart['blue'] += 2
+    crystal_cart['pink'] += 0
+    return crystal_cart
 
-#     'card_21': {'description': 'Trade 2 green for 2 blue: -2 green + 2 blue',
-#                 'action': },
 
-#     'card_22': {'description': 'Trade 2 green for 1 pink and 2 yellow: -2 green + 1 pink + 2 yellow',
-#                 'action': },
+def minus2green_plus1pink2yellow(crystal_cart):
+    print('Trade 2 green for 1 pink and 2 yellow: -2 green + 1 pink + 2 yellow')
+    crystal_cart['yellow'] += 2
+    crystal_cart['green'] += -2
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 1
+    return crystal_cart
 
-#     'card_23': {'description': '',
-#                 'action': },
 
-#     'card_24': {'description': '',
-#                 'action': },
+def minus2green_plus1blue3yellow(crystal_cart):
+    print('Trade 2 green for 1 blue 3 yellow: -2 green + 1 blue + 3 yellow')
+    crystal_cart['yellow'] += 3
+    crystal_cart['green'] += -2
+    crystal_cart['blue'] += 1
+    crystal_cart['pink'] += 0
+    return crystal_cart
 
-#     'card_25': {'description': '',
-#                 'action': },
 
-#     'card_26': {'description': '',
-#                 'action': },
+def minus3green_plus1pink1blue1yellow(crystal_cart):
+    print('Trade 3 green for 1 pink 1 blue and 1 yellow')
+    crystal_cart['yellow'] += 1
+    crystal_cart['green'] += -3
+    crystal_cart['blue'] += 1
+    crystal_cart['pink'] += 1
+    return crystal_cart
 
-#     'card_27': {'description': '',
-#                 'action': },
 
-#     'card_28': {'description': '',
-#                 'action': },
+def minus3green_plus2blue2yellow(crystal_cart):
+    print('Trade 3 green for 2 blue and 2 yellow: -3 green + 2 blue + 2 yellow')
+    crystal_cart['yellow'] += 2
+    crystal_cart['green'] += -3
+    crystal_cart['blue'] += 2
+    crystal_cart['pink'] += 0
+    return crystal_cart
 
-#     'card_29': {'description': '',
-#                 'action': },
 
-#     'card_30': {'description': '',
-#                 'action': },
+def minus3green_plus2pink(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += -3
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 2
+    return crystal_cart
 
-#     'card_31': {'description': '',
-#                 'action': },
 
-#     'card_32': {'description': '',
-#                 'action': },
+def minus3green_plus3blue(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += -3
+    crystal_cart['blue'] += 3
+    crystal_cart['pink'] += 0
+    return crystal_cart
 
-#     'card_33': {'description': '',
-#                 'action': },
 
-#     'card_34': {'description': '',
-#                 'action': },
+def minus1green1yellow_plus1pink(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += -1
+    crystal_cart['green'] += -1
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 1
+    return crystal_cart
 
-#     'card_35': {'description': '',
-#                 'action': },
 
-#     'card_36': {'description': '',
-#                 'action': },
+def minus1blue_plus2green(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += 2
+    crystal_cart['blue'] += -1
+    crystal_cart['pink'] += 0
+    return crystal_cart
 
-#     'card_37': {'description': '',
-#                 'action': },
 
-#     'card_38': {'description': '',
-#                 'action': },
-# }
+def minus1blue_plus1green4yellow(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 4
+    crystal_cart['green'] += 1
+    crystal_cart['blue'] += -1
+    crystal_cart['pink'] += 0
+    return crystal_cart
+
+
+def minus1blue_plus2green1yellow(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 1
+    crystal_cart['green'] += 2
+    crystal_cart['blue'] += -1
+    crystal_cart['pink'] += 0
+    return crystal_cart
+
+
+def minus2blue_plus2pink(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += -2
+    crystal_cart['pink'] += 2
+    return crystal_cart
+
+
+def minus2blue_plus1pink2green(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += 2
+    crystal_cart['blue'] += -2
+    crystal_cart['pink'] += 1
+    return crystal_cart
+
+
+def minus2blue_plus3green2yellow(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 2
+    crystal_cart['green'] += 3
+    crystal_cart['blue'] += -2
+    crystal_cart['pink'] += 0
+    return crystal_cart
+
+
+def minus2blue_plus1red1green2yellow(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 2
+    crystal_cart['green'] += 1
+    crystal_cart['blue'] += -2
+    crystal_cart['pink'] += 1
+    return crystal_cart
+
+
+def _(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 0
+    return crystal_cart
+
+
+def _(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 0
+    return crystal_cart
+
+
+def _(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 0
+    return crystal_cart
+
+
+def _(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 0
+    return crystal_cart
+
+
+def _(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 0
+    return crystal_cart
+
+
+def _(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 0
+    return crystal_cart
+
+
+def _(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 0
+    return crystal_cart
+
+
+def _(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 0
+    return crystal_cart
+
+
+def _(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 0
+    return crystal_cart
+
+
+def _(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 0
+    return crystal_cart
+
+
+def _(crystal_cart):
+    print('')
+    crystal_cart['yellow'] += 0
+    crystal_cart['green'] += 0
+    crystal_cart['blue'] += 0
+    crystal_cart['pink'] += 0
+    return crystal_cart
