@@ -1,6 +1,6 @@
 from golems import golems_cards
 import random
-from action_cards import plus_two_yellow, upgrade_two, minus2yellow_plus2green
+from action_cards import plus2yellow, upgrade_2
 
 
 class Player():
@@ -13,7 +13,7 @@ class Player():
                              'blue': 0,
                              'pink': 0}
         self.golems = 0
-        self.hand = []
+        self.hand = [plus2yellow, upgrade_2]
         self.discard_pile = []
 
 
@@ -44,16 +44,3 @@ print(player.crystal_cart)
 
 # f = actions['card_1']['action'](player.crystal_cart)
 # print(f)
-
-# player.hand.append(plus_two_yellow)
-# player.hand.append(upgrade_two)
-
-
-card_list = [plus_two_yellow,
-             upgrade_two, minus2yellow_plus2green]
-for card in card_list:
-    print(card)
-    player.hand.append(card)
-    print(player.hand)
-player.hand[2](player.crystal_cart)
-print(player.crystal_cart)
