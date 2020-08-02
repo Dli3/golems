@@ -5,7 +5,7 @@ def plus_two_yellow(crystal_cart):
 
 
 def upgrade_two(crystal_cart):
-    print('Select one crystal to upgrade.')
+    print('Select first crystal to upgrade.')
     upgrade1 = input().lower()
     crystal_cart[f'{upgrade1}'] += 1
     print("Select second crystal to upgrade.")
@@ -267,7 +267,7 @@ def minus1pink_plus2blue(crystal_cart):
 
 
 def minus1pink_plus3green(crystal_cart):
-    print('')
+    print('Trade 1 pink for 3 green.')
     crystal_cart['yellow'] += 0
     crystal_cart['green'] += 3
     crystal_cart['blue'] += 0
@@ -276,7 +276,7 @@ def minus1pink_plus3green(crystal_cart):
 
 
 def minus1pink_plus1blue1green1yellow(crystal_cart):
-    print('')
+    print('Trade 1 pink for 1 blue 1 green 1 yellow.')
     crystal_cart['yellow'] += 1
     crystal_cart['green'] += 1
     crystal_cart['blue'] += 1
@@ -285,7 +285,7 @@ def minus1pink_plus1blue1green1yellow(crystal_cart):
 
 
 def minus1pink_plus2green2yellow(crystal_cart):
-    print('')
+    print('Trade 1 pink for 2 green 1 yellow.')
     crystal_cart['yellow'] += 2
     crystal_cart['green'] += 2
     crystal_cart['blue'] += 0
@@ -294,7 +294,7 @@ def minus1pink_plus2green2yellow(crystal_cart):
 
 
 def minus1pink_plus1blue3yellow(crystal_cart):
-    print('')
+    print('Trade 1 pink for 1 blue and 3 yellow.')
     crystal_cart['yellow'] += 3
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 1
@@ -303,7 +303,7 @@ def minus1pink_plus1blue3yellow(crystal_cart):
 
 
 def minus2pink_plus3blue1green1yellow(crystal_cart):
-    print('')
+    print('Trade 2 pink for 3 blue, 1 green, and 1 yellow.')
     crystal_cart['yellow'] += 1
     crystal_cart['green'] += 1
     crystal_cart['blue'] += 3
@@ -312,7 +312,7 @@ def minus2pink_plus3blue1green1yellow(crystal_cart):
 
 
 def minus2pink_plus2blue3green(crystal_cart):
-    print('')
+    print('Trade 2 pink for 2 blue and 3 green.')
     crystal_cart['yellow'] += 0
     crystal_cart['green'] += 3
     crystal_cart['blue'] += 2
@@ -321,7 +321,7 @@ def minus2pink_plus2blue3green(crystal_cart):
 
 
 def plus3yellow(crystal_cart):
-    print('')
+    print('Gain 3 yellow.')
     crystal_cart['yellow'] += 3
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 0
@@ -330,7 +330,7 @@ def plus3yellow(crystal_cart):
 
 
 def plus4yellow(crystal_cart):
-    print('')
+    print('Gain 4 yellow.')
     crystal_cart['yellow'] += 4
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 0
@@ -339,7 +339,7 @@ def plus4yellow(crystal_cart):
 
 
 def plus1green1yellow(crystal_cart):
-    print('')
+    print('Gain 1 green and 1 yellow.')
     crystal_cart['yellow'] += 1
     crystal_cart['green'] += 1
     crystal_cart['blue'] += 0
@@ -348,7 +348,7 @@ def plus1green1yellow(crystal_cart):
 
 
 def plus2green(crystal_cart):
-    print('')
+    print('Gain 2 green.')
     crystal_cart['yellow'] += 0
     crystal_cart['green'] += 2
     crystal_cart['blue'] += 0
@@ -357,7 +357,7 @@ def plus2green(crystal_cart):
 
 
 def plus1blue(crystal_cart):
-    print('')
+    print('Gain 1 blue.')
     crystal_cart['yellow'] += 0
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 1
@@ -366,7 +366,7 @@ def plus1blue(crystal_cart):
 
 
 def plus1blue1yellow(crystal_cart):
-    print('')
+    print('Gain 1 blue and 1 yellow.')
     crystal_cart['yellow'] += 1
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 1
@@ -375,7 +375,7 @@ def plus1blue1yellow(crystal_cart):
 
 
 def plus1pink(crystal_cart):
-    print('')
+    print('Gain 1 pink.')
     crystal_cart['yellow'] += 0
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 0
@@ -384,7 +384,7 @@ def plus1pink(crystal_cart):
 
 
 def plus1green2yellow(crystal_cart):
-    print('')
+    print('Gain 1 green and 2 yellow.')
     crystal_cart['yellow'] += 2
     crystal_cart['green'] += 1
     crystal_cart['blue'] += 0
@@ -393,14 +393,14 @@ def plus1green2yellow(crystal_cart):
 
 
 def upgrade3(crystal_cart):
-    print('')
-    print('Select one crystal to upgrade.')
+    print('Three total crystal upgrades.')
+    print('Select first crystal to upgrade.')
     upgrade1 = input().lower()
     crystal_cart[f'{upgrade1}'] += 1
     print("Select second crystal to upgrade.")
     upgrade1 = input().lower()
     crystal_cart[f'{upgrade1}'] += 1
-    print("Select second crystal to upgrade.")
+    print("Select third crystal to upgrade.")
     upgrade1 = input().lower()
     crystal_cart[f'{upgrade1}'] += 1
     return crystal_cart
