@@ -1,4 +1,7 @@
 from action_cards import*
+from players import Player
+from golems import golems_cards
+import random
 
 actions_dict = {
     'minus2yellow_plus2green': minus2yellow_plus2green,
@@ -46,7 +49,62 @@ actions_dict = {
     'upgrade3': upgrade3,
 }
 
-print(actions_dict['minus2yellow_plus2green'])
+# The actions and golems deck.
+action_cards_list = [card for card in actions_dict]
+golems_list = [golem for golem in golems_cards]
 
-for i, key in enumerate(actions_dict):
-    print(i, key)
+# The 5 randomly selected golems.
+golems_board = []
+for _ in range(5):
+    golems_board.append(random.choice(golems_list))
+
+print(golems_board)
+a = golems_board[1]
+print(golems_cards[a]['points'])
+
+num_players = int(input('How many players?\n'))
+assert num_players < 6
+
+
+total_players = 0
+players = []
+if total_players in range(num_players):
+    player1 = input(f'What is your name player {total_players + 1}?\n')
+    player_1 = Player(player1)
+    total_players += 1
+    players.append(player_1)
+
+if total_players in range(num_players):
+    player2 = input(f'What is your name player {total_players + 1}?\n')
+    player_2 = Player(player2)
+    total_players += 1
+    players.append(player_2)
+
+if total_players in range(num_players):
+    player3 = input(f'What is your name player {total_players + 1}?\n')
+    player_3 = Player(player3)
+    total_players += 1
+    players.append(player_3)
+
+
+if total_players in range(num_players):
+    player4 = input(f'What is your name player {total_players + 1}?\n')
+    player_4 = Player(player4)
+    total_players += 1
+    players.append(player_4)
+
+
+if total_players in range(num_players):
+    player5 = input(f'What is your name player {total_players + 1}?\n')
+    player_5 = Player(player5)
+    total_players += 1
+    players.append(player_5)
+
+print(f'Total players: {total_players}')
+print(f'Players: {players}')
+
+for player in players:
+    while player.golems < 5:
+        print("Test")
+        player_2.golems += 1
+        print(player_2.golems)

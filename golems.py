@@ -1,3 +1,9 @@
+'''
+There are 36 golems in the game. 
+Each golem has their own requirements to capture them.
+Each golem have their own unique scores. 
+'''
+
 golems_cards = {'golem_1': {'points': 6,
                             'requirements': {'yellow': 2,
                                              'green': 2,
