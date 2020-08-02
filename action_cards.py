@@ -1,10 +1,21 @@
-def plus_two_yellow(crystal_cart):
+'''
+These are the action cards which allows you to alter your
+crystal cart by upgrading, trading, or gaining crystals. 
+
+There's a total of 53 action cards.
+
+Each player starts with a plus2yellow and upgrade_2 action card.
+These two cards will be included in the player class.
+'''
+
+
+def plus2yellow(crystal_cart):
     print('Plus 2 yellow')
     crystal_cart['yellow'] += 2
     return crystal_cart
 
 
-def upgrade_two(crystal_cart):
+def upgrade_2(crystal_cart):
     print('Select first crystal to upgrade.')
     upgrade1 = input().lower()
     crystal_cart[f'{upgrade1}'] += 1
