@@ -239,57 +239,57 @@ def minus2blue_plus1red1green2yellow(crystal_cart):
     return crystal_cart
 
 
-def _(crystal_cart):
+def minus3blue_plus3pink(crystal_cart):
     print('')
     crystal_cart['yellow'] += 0
     crystal_cart['green'] += 0
-    crystal_cart['blue'] += 0
-    crystal_cart['pink'] += 0
+    crystal_cart['blue'] += -3
+    crystal_cart['pink'] += 3
     return crystal_cart
 
 
-def _(crystal_cart):
+def minus1blue2yellow_plus2pink(crystal_cart):
     print('')
-    crystal_cart['yellow'] += 0
+    crystal_cart['yellow'] += -2
     crystal_cart['green'] += 0
-    crystal_cart['blue'] += 0
-    crystal_cart['pink'] += 0
+    crystal_cart['blue'] += -1
+    crystal_cart['pink'] += 2
     return crystal_cart
 
 
-def _(crystal_cart):
+def minus1pink_plus2blue(crystal_cart):
     print('')
     crystal_cart['yellow'] += 0
     crystal_cart['green'] += 0
-    crystal_cart['blue'] += 0
-    crystal_cart['pink'] += 0
+    crystal_cart['blue'] += 2
+    crystal_cart['pink'] += -1
     return crystal_cart
 
 
-def _(crystal_cart):
+def minus1pink_plus3green(crystal_cart):
     print('')
     crystal_cart['yellow'] += 0
-    crystal_cart['green'] += 0
+    crystal_cart['green'] += 3
     crystal_cart['blue'] += 0
-    crystal_cart['pink'] += 0
+    crystal_cart['pink'] += -1
     return crystal_cart
 
 
-def _(crystal_cart):
+def minus1pink_plus1blue1green1yellow(crystal_cart):
     print('')
-    crystal_cart['yellow'] += 0
-    crystal_cart['green'] += 0
-    crystal_cart['blue'] += 0
-    crystal_cart['pink'] += 0
+    crystal_cart['yellow'] += 1
+    crystal_cart['green'] += 1
+    crystal_cart['blue'] += 1
+    crystal_cart['pink'] += -1
     return crystal_cart
 
 
-def _(crystal_cart):
+def minus1pink_plus2green2yellow(crystal_cart):
     print('')
-    crystal_cart['yellow'] += 0
-    crystal_cart['green'] += 0
+    crystal_cart['yellow'] += 2
+    crystal_cart['green'] += 2
     crystal_cart['blue'] += 0
-    crystal_cart['pink'] += 0
+    crystal_cart['pink'] += -1
     return crystal_cart
 
 
