@@ -55,19 +55,18 @@ action_cards_list = [card for card in actions_dict]
 golems_list = [golem for golem in golems_cards]
 
 # The 5 randomly selected golems.
-golems_board = []
+golems_board = create_golems_board(golems_list)
 
 print(len(golems_list))
-for _ in range(5):
-    random_golem = random.choice(golems_list)
-    golems_board.append(random_golem)
-    golems_list.remove(random_golem)
+# for _ in range(5):
+#     random_golem = random.choice(golems_list)
+#     golems_board.append(random_golem)
+#     golems_list.remove(random_golem)
 
-print(len(golems_list))
 
 print(golems_board)
 a = golems_board[1]
-print(golems_cards[a]['points'])
+# print(golems_cards[a]['points'])
 
 
 #! Creating the players playing the game.
