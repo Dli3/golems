@@ -23,7 +23,7 @@ def create_golems_board(golems_list):
 
 
 def check_golem_board(golems_list, golems_board):
-    if golems_board < 5:
+    if len(golems_board) < 5:
         random_golem = random.choice(golems_list)
         golems_board.append(random_golem)
         golems_list.remove(random_golem)
