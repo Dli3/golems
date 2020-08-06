@@ -12,6 +12,7 @@ These two cards will be included in the player class.
 def plus2yellow(crystal_cart):
     print('Plus 2 yellow')
     crystal_cart['yellow'] += 2
+    crystal_cart['capacity'] += 2
     return crystal_cart
 
 
@@ -31,6 +32,7 @@ def minus2yellow_plus2green(crystal_cart):
     crystal_cart['green'] += 2
     crystal_cart['blue'] += 0
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 0
     return crystal_cart
 
 
@@ -40,6 +42,7 @@ def minus2yellow_plus1blue(crystal_cart):
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 1
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += -1
     return crystal_cart
 
 
@@ -49,6 +52,7 @@ def minus3yellow_plus1pink(crystal_cart):
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 0
     crystal_cart['pink'] += 1
+    crystal_cart['capacity'] += -2
     return crystal_cart
 
 
@@ -58,6 +62,7 @@ def minus3yellow_plus1green1blue(crystal_cart):
     crystal_cart['green'] += 1
     crystal_cart['blue'] += 1
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += -1
     return crystal_cart
 
 
@@ -67,6 +72,7 @@ def minus4yellow_plus1blue1pink(crystal_cart):
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 1
     crystal_cart['pink'] += 1
+    crystal_cart['capacity'] += -2
     return crystal_cart
 
 
@@ -76,6 +82,7 @@ def minus5yellow_plus2pink(crystal_cart):
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 0
     crystal_cart['pink'] += 2
+    crystal_cart['capacity'] += -3
     return crystal_cart
 
 
@@ -85,6 +92,7 @@ def minus5yellow_plus3blue(crystal_cart):
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 3
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += -2
     return crystal_cart
 
 
@@ -94,6 +102,7 @@ def minus4yellow_plus2blue(crystal_cart):
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 2
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += -2
     return crystal_cart
 
 
@@ -103,6 +112,7 @@ def minus3yellow_plus3green(crystal_cart):
     crystal_cart['green'] += 3
     crystal_cart['blue'] += 0
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 0
     return crystal_cart
 
 
@@ -112,6 +122,7 @@ def minus1green_plus3yellow(crystal_cart):
     crystal_cart['green'] += -1
     crystal_cart['blue'] += 0
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 2
     return crystal_cart
 
 
@@ -121,6 +132,7 @@ def minus2green_plus2blue(crystal_cart):
     crystal_cart['green'] += -2
     crystal_cart['blue'] += 2
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 0
     return crystal_cart
 
 
@@ -130,6 +142,7 @@ def minus2green_plus1pink2yellow(crystal_cart):
     crystal_cart['green'] += -2
     crystal_cart['blue'] += 0
     crystal_cart['pink'] += 1
+    crystal_cart['capacity'] += 1
     return crystal_cart
 
 
@@ -139,6 +152,7 @@ def minus2green_plus1blue3yellow(crystal_cart):
     crystal_cart['green'] += -2
     crystal_cart['blue'] += 1
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 2
     return crystal_cart
 
 
@@ -148,6 +162,7 @@ def minus3green_plus1pink1blue1yellow(crystal_cart):
     crystal_cart['green'] += -3
     crystal_cart['blue'] += 1
     crystal_cart['pink'] += 1
+    crystal_cart['capacity'] += 0
     return crystal_cart
 
 
@@ -157,6 +172,7 @@ def minus3green_plus2blue2yellow(crystal_cart):
     crystal_cart['green'] += -3
     crystal_cart['blue'] += 2
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 1
     return crystal_cart
 
 
@@ -166,6 +182,7 @@ def minus3green_plus2pink(crystal_cart):
     crystal_cart['green'] += -3
     crystal_cart['blue'] += 0
     crystal_cart['pink'] += 2
+    crystal_cart['capacity'] += -1
     return crystal_cart
 
 
@@ -175,6 +192,7 @@ def minus3green_plus3blue(crystal_cart):
     crystal_cart['green'] += -3
     crystal_cart['blue'] += 3
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 0
     return crystal_cart
 
 
@@ -184,6 +202,7 @@ def minus1green1yellow_plus1pink(crystal_cart):
     crystal_cart['green'] += -1
     crystal_cart['blue'] += 0
     crystal_cart['pink'] += 1
+    crystal_cart['capacity'] += -1
     return crystal_cart
 
 
@@ -193,6 +212,7 @@ def minus1blue_plus2green(crystal_cart):
     crystal_cart['green'] += 2
     crystal_cart['blue'] += -1
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 1
     return crystal_cart
 
 
@@ -202,6 +222,7 @@ def minus1blue_plus1green4yellow(crystal_cart):
     crystal_cart['green'] += 1
     crystal_cart['blue'] += -1
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 4
     return crystal_cart
 
 
@@ -211,6 +232,7 @@ def minus1blue_plus2green1yellow(crystal_cart):
     crystal_cart['green'] += 2
     crystal_cart['blue'] += -1
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 2
     return crystal_cart
 
 
@@ -220,6 +242,7 @@ def minus2blue_plus2pink(crystal_cart):
     crystal_cart['green'] += 0
     crystal_cart['blue'] += -2
     crystal_cart['pink'] += 2
+    crystal_cart['capacity'] += 0
     return crystal_cart
 
 
@@ -229,6 +252,7 @@ def minus2blue_plus1pink2green(crystal_cart):
     crystal_cart['green'] += 2
     crystal_cart['blue'] += -2
     crystal_cart['pink'] += 1
+    crystal_cart['capacity'] += 1
     return crystal_cart
 
 
@@ -238,6 +262,7 @@ def minus2blue_plus3green2yellow(crystal_cart):
     crystal_cart['green'] += 3
     crystal_cart['blue'] += -2
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 3
     return crystal_cart
 
 
@@ -247,6 +272,7 @@ def minus2blue_plus1pink1green2yellow(crystal_cart):
     crystal_cart['green'] += 1
     crystal_cart['blue'] += -2
     crystal_cart['pink'] += 1
+    crystal_cart['capacity'] += 2
     return crystal_cart
 
 
@@ -256,6 +282,7 @@ def minus3blue_plus3pink(crystal_cart):
     crystal_cart['green'] += 0
     crystal_cart['blue'] += -3
     crystal_cart['pink'] += 3
+    crystal_cart['capacity'] += 0
     return crystal_cart
 
 
@@ -265,6 +292,7 @@ def minus1blue2yellow_plus2pink(crystal_cart):
     crystal_cart['green'] += 0
     crystal_cart['blue'] += -1
     crystal_cart['pink'] += 2
+    crystal_cart['capacity'] += -1
     return crystal_cart
 
 
@@ -274,6 +302,7 @@ def minus1pink_plus2blue(crystal_cart):
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 2
     crystal_cart['pink'] += -1
+    crystal_cart['capacity'] += 1
     return crystal_cart
 
 
@@ -283,6 +312,7 @@ def minus1pink_plus3green(crystal_cart):
     crystal_cart['green'] += 3
     crystal_cart['blue'] += 0
     crystal_cart['pink'] += -1
+    crystal_cart['capacity'] += 2
     return crystal_cart
 
 
@@ -292,6 +322,7 @@ def minus1pink_plus1blue1green1yellow(crystal_cart):
     crystal_cart['green'] += 1
     crystal_cart['blue'] += 1
     crystal_cart['pink'] += -1
+    crystal_cart['capacity'] += 2
     return crystal_cart
 
 
@@ -301,6 +332,7 @@ def minus1pink_plus2green2yellow(crystal_cart):
     crystal_cart['green'] += 2
     crystal_cart['blue'] += 0
     crystal_cart['pink'] += -1
+    crystal_cart['capacity'] += 3
     return crystal_cart
 
 
@@ -310,6 +342,7 @@ def minus1pink_plus1blue3yellow(crystal_cart):
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 1
     crystal_cart['pink'] += -1
+    crystal_cart['capacity'] += 3
     return crystal_cart
 
 
@@ -319,6 +352,7 @@ def minus2pink_plus3blue1green1yellow(crystal_cart):
     crystal_cart['green'] += 1
     crystal_cart['blue'] += 3
     crystal_cart['pink'] += -2
+    crystal_cart['capacity'] += 3
     return crystal_cart
 
 
@@ -328,6 +362,7 @@ def minus2pink_plus2blue3green(crystal_cart):
     crystal_cart['green'] += 3
     crystal_cart['blue'] += 2
     crystal_cart['pink'] += -2
+    crystal_cart['capacity'] += 3
     return crystal_cart
 
 
@@ -337,6 +372,7 @@ def plus3yellow(crystal_cart):
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 0
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 3
     return crystal_cart
 
 
@@ -346,6 +382,7 @@ def plus4yellow(crystal_cart):
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 0
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 4
     return crystal_cart
 
 
@@ -355,6 +392,7 @@ def plus1green1yellow(crystal_cart):
     crystal_cart['green'] += 1
     crystal_cart['blue'] += 0
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 2
     return crystal_cart
 
 
@@ -364,6 +402,7 @@ def plus2green(crystal_cart):
     crystal_cart['green'] += 2
     crystal_cart['blue'] += 0
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 2
     return crystal_cart
 
 
@@ -373,6 +412,7 @@ def plus1blue(crystal_cart):
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 1
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 1
     return crystal_cart
 
 
@@ -382,6 +422,7 @@ def plus1blue1yellow(crystal_cart):
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 1
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 2
     return crystal_cart
 
 
@@ -391,6 +432,7 @@ def plus1pink(crystal_cart):
     crystal_cart['green'] += 0
     crystal_cart['blue'] += 0
     crystal_cart['pink'] += 1
+    crystal_cart['capacity'] += 1
     return crystal_cart
 
 
@@ -400,6 +442,7 @@ def plus1green2yellow(crystal_cart):
     crystal_cart['green'] += 1
     crystal_cart['blue'] += 0
     crystal_cart['pink'] += 0
+    crystal_cart['capacity'] += 3
     return crystal_cart
 
 

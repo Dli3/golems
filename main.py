@@ -60,81 +60,83 @@ golems_board = create_golems_board(golems_list)
 
 print(golems_board)
 a = golems_board[1]
-# print(golems_cards[a]['points'])
+
+player = Player('Dennis')
+player.crystal_cart['yellow'] += 10
+player.crystal_cart['green'] += 10
+player.crystal_cart['blue'] += 10
+player.crystal_cart['pink'] += 10
+
+capture_golem(player, 3, golems_board, player.crystal_cart, golems_cards)
 
 
-#! Creating the players playing the game.
-num_players = int(input('How many players?\n'))
-assert num_players < 6
+# #! Creating the players playing the game.
+# num_players = int(input('How many players?\n'))
+# assert num_players < 6
 
-total_players = 0
-player_names = []
-
-if total_players in range(num_players):
-    player1 = input(f'What is your name player {total_players + 1}?\n')
-    player_1 = Player(player1)
-    total_players += 1
-    player_names.append(player_1.name)
-else:
-    player_1 = None
-
-if total_players in range(num_players):
-    player2 = input(f'What is your name player {total_players + 1}?\n')
-    player_2 = Player(player2)
-    total_players += 1
-    player_names.append(player_2.name)
-else:
-    player_2 = None
-
-if total_players in range(num_players):
-    player3 = input(f'What is your name player {total_players + 1}?\n')
-    player_3 = Player(player3)
-    total_players += 1
-    player_names.append(player_3.name)
-else:
-    player_3 = None
-
-if total_players in range(num_players):
-    player4 = input(f'What is your name player {total_players + 1}?\n')
-    player_4 = Player(player4)
-    total_players += 1
-    player_names.append(player_4.name)
-else:
-    player_4 = None
-
-if total_players in range(num_players):
-    player5 = input(f'What is your name player {total_players + 1}?\n')
-    player_5 = Player(player5)
-    total_players += 1
-    player_names.append(player_5.name)
-else:
-    player_5 = None
-
-print(f'Total players: {total_players}')
-print(f'Players: {player_names}')
+# total_players = 0
+# player_names = []
 
 
-#! Actual players dictionary.
-players = {}
+# if total_players in range(num_players):
+#     player1 = input(f'What is your name player {total_players + 1}?\n')
+#     player_1 = Player(player1)
+#     total_players += 1
+#     player_names.append(player_1.name)
+# else:
+#     player_1 = None
+
+# if total_players in range(num_players):
+#     player2 = input(f'What is your name player {total_players + 1}?\n')
+#     player_2 = Player(player2)
+#     total_players += 1
+#     player_names.append(player_2.name)
+# else:
+#     player_2 = None
+
+# if total_players in range(num_players):
+#     player3 = input(f'What is your name player {total_players + 1}?\n')
+#     player_3 = Player(player3)
+#     total_players += 1
+#     player_names.append(player_3.name)
+# else:
+#     player_3 = None
+
+# if total_players in range(num_players):
+#     player4 = input(f'What is your name player {total_players + 1}?\n')
+#     player_4 = Player(player4)
+#     total_players += 1
+#     player_names.append(player_4.name)
+# else:
+#     player_4 = None
+
+# if total_players in range(num_players):
+#     player5 = input(f'What is your name player {total_players + 1}?\n')
+#     player_5 = Player(player5)
+#     total_players += 1
+#     player_names.append(player_5.name)
+# else:
+#     player_5 = None
+
+# print(f'Total players: {total_players}')
+# print(f'Players: {player_names}')
+
+
+# #! Actual players dictionary.
+# players = {}
+# if player_1 != None:
+#     players['player_1'] = player_1
+# if player_2 != None:
+#     players['player_2'] = player_2
+# if player_3 != None:
+#     players['player_3'] = player_3
+# if player_4 != None:
+#     players['player_4'] = player_4
+# if player_5 != None:
+#     players['player_5'] = player_5
 
 # #! Checking if any of the players have 5 golems.
-# if player_1 != None:
-#     player_1_wins = verify_golem_count(player_1.name, player_1.golems)
-
-# if player_2 != None:
-#     player_2_wins = verify_golem_count(player_2.name, player_2.golems)
-
-# if player_3 != None:
-#     player_3_wins = verify_golem_count(player_3.name, player_3.golems)
-
-# if player_4 != None:
-#     player_4_wins = verify_golem_count(player_4.name, player_4.golems)
-
-# if player_5 != None:
-#     player_5_wins = verify_golem_count(player_5.name, player_5.golems)
-
-# print(player_1_wins)
-
-#! Continue the game play while the players' golem count is less than 5.
-while player_1_wins and player_2_wins and player_3_wins and player_4_wins and player_5_wins != True:
-    print('Test')
+# while players['player_1'].golems < 5 and players['player_2'].golems < 5:
+#     for player in players:
+#         print(players[player].crystal_cart)
+#         print(players[player].name)
