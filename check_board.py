@@ -5,50 +5,12 @@ import random
 from players import Player
 
 
-def verify_golem_count(player_name, player_golems):
-    if player_golems > 5:
-        print(f'Player {player_name} has achieved {player_golems} golems!')
-        return True
-    else:
-        print(f'Player {player_name} has {player_golems} golems.')
-        return False
-
-
-def check_max_golems(players_list):
-    golems_count = [x.golems for x in players_list]
-    return max(golems_count)
-
-
-def create_golems_board(golems_list):
-    golems_board = []
-    for _ in range(5):
-        random_golem = random.choice(golems_list)
-        golems_board.append(random_golem)
-        golems_list.remove(random_golem)
-    return golems_board
-
-
-def check_golem_board(golems_list, golems_board):
-    if len(golems_board) < 5:
-        random_golem = random.choice(golems_list)
-        golems_board.append(random_golem)
-        golems_list.remove(random_golem)
-    return golems_board
-
-
-# Turn actions
-def capture_golem(player, index_position, golems_board, crystal_cart, golem_cards):
-    print(golems_board[index_position])
-
-    print(golem_cards[golems_board[index_position]]['requirements'])
-    # if golem_cards[golems_board[index_position]]['requirements'] in crystal_cart:
-    print(crystal_cart)
-    result = {key: crystal_cart[key] - golem_cards[golems_board[index_position]]['requirements'].get(key, 0)
-              for key in crystal_cart[key]}
-    print(result)
-
-
+#! Initializing the game.
 def define_number_of_players():
+    '''
+    Asking the user how many players are going to be playing this game of golems.
+    Validation is in place to verify the a integer is specified between 1-5 players.
+    '''
     while True:
         try:
             num_players = int(input('How many players?\n'))
@@ -66,5 +28,107 @@ def define_number_of_players():
             continue
         else:
             break
-    print(f'We have {num_players} players playing!')
+    print(f'We have {num_players} players playing!\n')
     return num_players
+
+
+def create_golems_board(golems_list):
+    '''
+    Creates the golem board with 5 random golems from the golems list.
+    The 5 randomly selected golems are then removed from the golems list.
+    Returns the golem board.
+
+    Args:
+        golems_list: The list we're using to generate our golem board.
+    '''
+    golems_board = []
+    for _ in range(5):
+        random_golem = random.choice(golems_list)
+        golems_board.append(random_golem)
+        golems_list.remove(random_golem)
+    return golems_board
+
+
+def create_action_cards_board(action_cards_list):
+    '''
+    Creates the action cards board with 6 randomly selected action cards from the 
+    action cards list.
+    Returns the action cards board.
+
+    Args:
+        action_cards_list: The list of action cards we're randomly selecting from.
+    '''
+
+
+#! Board checks
+def check_max_golems(players_list):
+    '''
+    Checks the golem count of each player provided in the players list.
+    Returns the highest golem count.
+
+    Args:
+        players_list: The list of players playing the game.
+    '''
+    golems_count = [x.golems for x in players_list]
+    return max(golems_count)
+
+
+def check_golem_board(golems_list, golems_board):
+    '''
+    Checks the golem board has 5 golems. 
+    If the golem board has less than 5 golems, a random golem will be
+    randomly selected from the golems list and added to the golems board.
+    The selected golem will then be removed from the golems list.
+    Returns the golem board.
+
+    Args:
+        golems_list: The list of golems (36 golems in the game).
+        golems_board: The golem board that has 5 golems at the start of each players turn.
+    '''
+    if len(golems_board) < 5:
+        random_golem = random.choice(golems_list)
+        golems_board.append(random_golem)
+        golems_list.remove(random_golem)
+    return golems_board
+
+
+#! Turn actions
+def capture_golem(golem_requirement, player):
+    '''
+    This function verifies the crystals in the player's crystal cart meets the 
+    requirements of the golem they're attempting to capture.
+    Verifying the player's crystal count for each color doesn't reach a negative count.
+    If the player meets the requirements, the crystals will be subtracted from the player's
+    crystal cart and the golem count and score will be added to the player.
+
+    Args:
+        golem_requirement: The golem card they're trying to capture.
+        player: The player trying to capture the golem.
+    '''
+    yellow = player.yellow - golem_requirement.yellow if player.yellow - \
+        golem_requirement.yellow > -1 else False
+    green = player.green - golem_requirement.green if player.green - \
+        golem_requirement.green > -1 else False
+    blue = player.blue - golem_requirement.blue if player.blue - \
+        golem_requirement.blue > -1 else False
+    pink = player.pink - golem_requirement.pink if player.pink - \
+        golem_requirement.pink > -1 else False
+
+    if yellow != False and green != False and blue != False and pink != False:
+        player.yellow = yellow
+        player.green = green
+        player.blue = blue
+        player.pink = pink
+        player.golems += 1
+        player.score += golem_requirement.points
+    else:
+        print('Sorry, you do not meet the golem requirements. \n Missing requirements:')
+        if yellow == False:
+            print('Yellow Crystals')
+        if green == False:
+            print('Green Crystals')
+        if blue == False:
+            print('Blue Crystals')
+        if pink == False:
+            print('Pink Crystals')
+    return player

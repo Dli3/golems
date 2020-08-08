@@ -8,11 +8,10 @@ class Player():
         self.name = name
         self.points = 0
         self.golems = 0
-        self.crystal_cart = {'capacity': 10,
-                             'yellow': 0,
-                             'green': 0,
-                             'blue': 0,
-                             'pink': 0}
-
+        self.capacity = 10
+        self.yellow = 0
+        self.green = 0
+        self.blue = 0
+        self.pink = 0
         self.hand = [plus2yellow, upgrade_2]
         self.discard_pile = []
