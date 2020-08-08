@@ -49,7 +49,7 @@ def create_golems_board(golems_list):
     return golems_board
 
 
-def create_action_cards_board(action_cards_list):
+def create_action_board(action_cards_list):
     '''
     Creates the action cards board with 6 randomly selected action cards from the 
     action cards list.
@@ -58,6 +58,12 @@ def create_action_cards_board(action_cards_list):
     Args:
         action_cards_list: The list of action cards we're randomly selecting from.
     '''
+    action_board = []
+    for _ in range(6):
+        random_action = (random.choice(action_cards_list))
+        action_board.append(random_action)
+        action_cards_list.remove(random_action)
+    return action_board
 
 
 #! Board checks
@@ -92,7 +98,20 @@ def check_golem_board(golems_list, golems_board):
     return golems_board
 
 
+def check_actions_board(action_cards_list, action_board):
+    '''
+    Checks the actions board to verify there's 6 action cards at the start of every player's turn.
+    '''
+    if len(action_board) < 6:
+        random_action = (random.choice(action_cards_list))
+        action_board.append(random_action)
+        action_cards_list.remove(random_action)
+    return action_board
+
+
 #! Turn actions
+
+
 def capture_golem(golem_requirement, player):
     '''
     This function verifies the crystals in the player's crystal cart meets the 

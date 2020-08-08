@@ -14,7 +14,8 @@ golems_board = create_golems_board(golems_list)
 # print(golems_board)
 
 # Creating action cards board which contains 6 action cards at at time(or until deckout).
-
+actions_board = create_action_board(action_cards_list)
+print(actions_board)
 
 # #! Creating the players playing the game.
 # num_players = define_number_of_players()
