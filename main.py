@@ -2,7 +2,7 @@ from action_cards import*
 from players import Player
 from golems import golems_cards
 import random
-from check_board import*
+from gameplay import*
 from board import Board
 
 p = ['dennis', 'test']
@@ -15,6 +15,10 @@ del board.golems_board[1]
 board.check_golem_board()
 board.board_state()
 
+player = Player('dennis')
+player.yellow += 5
+player.capacity += 3
+player.check_crystal_capacity()
 
 # #! Creating the players playing the game.
 # num_players = define_number_of_players()

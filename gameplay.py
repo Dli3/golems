@@ -1,5 +1,5 @@
 '''
-These functions are to check the board to verify the board gameplay state.
+These functions are the gameplay actions.
 '''
 import random
 from players import Player

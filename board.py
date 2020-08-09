@@ -1,4 +1,4 @@
-from check_board import *
+from gameplay import *
 from golems import*
 from action_cards import*
 
