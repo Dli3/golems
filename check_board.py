@@ -66,7 +66,7 @@ def create_action_board(action_cards_list):
     return action_board
 
 
-#! Board checks
+#! Turn actions
 def check_max_golems(players_list):
     '''
     Checks the golem count of each player provided in the players list.
@@ -77,39 +77,6 @@ def check_max_golems(players_list):
     '''
     golems_count = [x.golems for x in players_list]
     return max(golems_count)
-
-
-def check_golem_board(golems_list, golems_board):
-    '''
-    Checks the golem board has 5 golems. 
-    If the golem board has less than 5 golems, a random golem will be
-    randomly selected from the golems list and added to the golems board.
-    The selected golem will then be removed from the golems list.
-    Returns the golem board.
-
-    Args:
-        golems_list: The list of golems (36 golems in the game).
-        golems_board: The golem board that has 5 golems at the start of each players turn.
-    '''
-    if len(golems_board) < 5:
-        random_golem = random.choice(golems_list)
-        golems_board.append(random_golem)
-        golems_list.remove(random_golem)
-    return golems_board
-
-
-def check_actions_board(action_cards_list, action_board):
-    '''
-    Checks the actions board to verify there's 6 action cards at the start of every player's turn.
-    '''
-    if len(action_board) < 6:
-        random_action = (random.choice(action_cards_list))
-        action_board.append(random_action)
-        action_cards_list.remove(random_action)
-    return action_board
-
-
-#! Turn actions
 
 
 def capture_golem(golem_requirement, player):

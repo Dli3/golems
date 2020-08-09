@@ -3,19 +3,18 @@ from players import Player
 from golems import golems_cards
 import random
 from check_board import*
+from board import Board
 
+p = ['dennis', 'test']
+board = Board(players_list=p)
+board.check_golem_board()
+a = board.golems_board[1]
+board.board_state()
+print(board.players_list)
+del board.golems_board[1]
+board.check_golem_board()
+board.board_state()
 
-# The actions and golems list.
-action_cards_list = [card for card in actions_dict]
-golems_list = [golem for golem in golems_cards]
-
-# Creating golem board which contains 5 golems at a time(or until deckout).
-golems_board = create_golems_board(golems_list)
-# print(golems_board)
-
-# Creating action cards board which contains 6 action cards at at time(or until deckout).
-actions_board = create_action_board(action_cards_list)
-print(actions_board)
 
 # #! Creating the players playing the game.
 # num_players = define_number_of_players()
