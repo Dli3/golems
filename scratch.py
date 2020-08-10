@@ -46,7 +46,7 @@ board = Board()
 p = Player('dennis')
 print(p.yellow)
 print(p.green)
-p.hand[0](p)
+p.hand[1](p)
 print(p.yellow)
 
 # minus2yellow_plus2green(p)

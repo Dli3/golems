@@ -1,6 +1,6 @@
 '''
 These are the action cards which allows you to alter your
-crystal cart by upgrading, trading, or gaining crystals. 
+crystal cart by upgrading, trading, or gaining crystals.
 
 There's a total of 53 action cards.
 
@@ -18,11 +18,28 @@ def plus2yellow(player):
 
 def upgrade_2(player):
     print('Select first crystal to upgrade.')
-    upgrade1 = input().lower()
-    player[f'{upgrade1}'] += 1
+    upgrade = input(
+        'Options:\nyellow or y\ngreen or g\nblue or b\npink or p\n').lower()
+    if upgrade == 'yellow' or upgrade == 'y':
+        player.yellow += 1
+    elif upgrade == 'green' or upgrade == 'g':
+        player.green += 1
+    elif upgrade == 'blue' or upgrade == 'b':
+        player.blue += 1
+    elif upgrade == 'pink' or upgrade == 'p':
+        player.pink += 1
+
     print("Select second crystal to upgrade.")
-    upgrade1 = input().lower()
-    player[f'{upgrade1}'] += 1
+    upgrade = input(
+        'Options:\nyellow or y\ngreen or g\nblue or b\npink or p\n').lower()
+    if upgrade == 'yellow' or upgrade == 'y':
+        player.yellow += 1
+    elif upgrade == 'green' or upgrade == 'g':
+        player.green += 1
+    elif upgrade == 'blue' or upgrade == 'b':
+        player.blue += 1
+    elif upgrade == 'pink' or upgrade == 'p':
+        player.pink += 1
     return player
 
 
@@ -504,4 +521,6 @@ actions_dict = {
     'plus1pink': plus1pink,
     'plus1green2yellow': plus1green2yellow,
     'upgrade3': upgrade3,
+
+
 }
