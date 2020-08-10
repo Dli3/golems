@@ -110,9 +110,17 @@ def rest(discard_pile, player_hand):
     return player_hand
 
 
-def play_action(player, action_card_index, actions_dict):
+def play_action(player, actions_dict):
     print(f"{player.name}'s hand: {player.hand}")
-    player.hand[action_card_index](player)
+    card_index = None
+    while card_index != int:
+        card_index = int(input(
+            f'Which action card would you like to play? Please enter the index between 0 and {len(player.hand )-1}.\n'))
+
+    player.hand[card_index](player)
+    player.discard_pile.append(player.hand[card_index])
+    del player.hand[card_index]
+    return player
 
 
 def capture_golem(golem_board, golem_index, player):

@@ -9,6 +9,20 @@ These two cards will be included in the player class.
 '''
 
 
+def upgrade(player):
+    upgrade = input(
+        'Options:\nyellow or y\ngreen or g\nblue or b\npink or p\n').lower()
+    if upgrade == 'yellow' or upgrade == 'y':
+        player.yellow += 1
+    elif upgrade == 'green' or upgrade == 'g':
+        player.green += 1
+    elif upgrade == 'blue' or upgrade == 'b':
+        player.blue += 1
+    elif upgrade == 'pink' or upgrade == 'p':
+        player.pink += 1
+    return player
+
+
 def plus2yellow(player):
     print('Plus 2 yellow')
     player.yellow += 2
@@ -18,28 +32,9 @@ def plus2yellow(player):
 
 def upgrade_2(player):
     print('Select first crystal to upgrade.')
-    upgrade = input(
-        'Options:\nyellow or y\ngreen or g\nblue or b\npink or p\n').lower()
-    if upgrade == 'yellow' or upgrade == 'y':
-        player.yellow += 1
-    elif upgrade == 'green' or upgrade == 'g':
-        player.green += 1
-    elif upgrade == 'blue' or upgrade == 'b':
-        player.blue += 1
-    elif upgrade == 'pink' or upgrade == 'p':
-        player.pink += 1
-
+    upgrade(player)
     print("Select second crystal to upgrade.")
-    upgrade = input(
-        'Options:\nyellow or y\ngreen or g\nblue or b\npink or p\n').lower()
-    if upgrade == 'yellow' or upgrade == 'y':
-        player.yellow += 1
-    elif upgrade == 'green' or upgrade == 'g':
-        player.green += 1
-    elif upgrade == 'blue' or upgrade == 'b':
-        player.blue += 1
-    elif upgrade == 'pink' or upgrade == 'p':
-        player.pink += 1
+    upgrade(player)
     return player
 
 
@@ -464,16 +459,13 @@ def plus1green2yellow(player):
 
 
 def upgrade3(player):
-    print('Three total crystal upgrades.')
+    print('Three crystal upgrades.')
     print('Select first crystal to upgrade.')
-    upgrade1 = input().lower()
-    player[f'{upgrade1}'] += 1
+    upgrade1(player)
     print("Select second crystal to upgrade.")
-    upgrade1 = input().lower()
-    player[f'{upgrade1}'] += 1
+    upgrade1(player)
     print("Select third crystal to upgrade.")
-    upgrade1 = input().lower()
-    player[f'{upgrade1}'] += 1
+    upgrade1(player)
     return player
 
 

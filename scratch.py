@@ -44,29 +44,32 @@ board = Board()
 
 
 p = Player('dennis')
-print(p.yellow)
-print(p.green)
-p.hand[1](p)
-print(p.yellow)
+# print(p.yellow)
+# print(p.green)
+# p.hand[1](p)
+# print(p.yellow)
 
-# minus2yellow_plus2green(p)
+# # minus2yellow_plus2green(p)
 
-print(p.yellow)
-print(p.green)
+# print(p.yellow)
+# print(p.green)
 
 
-p.yellow += 2
-p.green += 2
-p.blue += 2
-p.pink += 1
+# p.yellow += 2
+# p.green += 2
+# p.blue += 2
+# p.pink += 1
 
-capture_golem(board.golems_board, 1, p)
-print(p.points)
-print(board.golems_board)
+# capture_golem(board.golems_board, 1, p)
+# print(p.points)
+# print(board.golems_board)
 
-play_action(p, 0, actions_dict)
+play_action(p, actions_dict)
 
 print(p.yellow)
 print(p.green)
 print(p.blue)
 print(p.pink)
+
+print(p.hand)
+print(p.discard_pile)
