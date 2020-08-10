@@ -3,9 +3,12 @@ These functions are the gameplay actions.
 '''
 import random
 from players import Player
-
+from action_cards import actions_dict
+from golems import golems_cards
 
 #! Initializing the game.
+
+
 def define_number_of_players():
     '''
     Asking the user how many players are going to be playing this game of golems.
@@ -30,6 +33,27 @@ def define_number_of_players():
             break
     print(f'We have {num_players} players playing!\n')
     return num_players
+
+
+def starting_hand(players_list):
+    # Player 1
+    if 0 in range(len(players_list)):
+        players_list[0].yellow += 3
+    # Player 2
+    if 1 in range(len(players_list)):
+        players_list[1].yellow += 4
+    # Player 3
+    if 2 in range(len(players_list)):
+        players_list[2].yellow += 4
+    # Player 4
+    if 3 in range(len(players_list)):
+        players_list[3].yellow += 3
+        players_list[3].green += 1
+    # Player 5
+    if 4 in range(len(players_list)):
+        players_list[4].yellow += 3
+        players_list[4].green += 1
+    return None
 
 
 def create_golems_board(golems_list):
@@ -66,7 +90,7 @@ def create_action_board(action_cards_list):
     return action_board
 
 
-#! Turn actions
+#! Taking a turn actions
 def check_max_golems(players_list):
     '''
     Checks the golem count of each player provided in the players list.
@@ -79,7 +103,19 @@ def check_max_golems(players_list):
     return max(golems_count)
 
 
-def capture_golem(golem_requirement, player):
+def rest(discard_pile, player_hand):
+    for card in discard_pile:
+        player_hand.append(card)
+    discard_pile.clear()
+    return player_hand
+
+
+def play_action(player, action_card_index, actions_dict):
+    print(f"{player.name}'s hand: {player.hand}")
+    player.hand[action_card_index](player)
+
+
+def capture_golem(golem_board, golem_index, player):
     '''
     This function verifies the crystals in the player's crystal cart meets the 
     requirements of the golem they're attempting to capture.
@@ -88,17 +124,20 @@ def capture_golem(golem_requirement, player):
     crystal cart and the golem count and score will be added to the player.
 
     Args:
-        golem_requirement: The golem card they're trying to capture.
+        golem: The golem card they're trying to capture.
         player: The player trying to capture the golem.
     '''
-    yellow = player.yellow - golem_requirement.yellow if player.yellow - \
-        golem_requirement.yellow > -1 else False
-    green = player.green - golem_requirement.green if player.green - \
-        golem_requirement.green > -1 else False
-    blue = player.blue - golem_requirement.blue if player.blue - \
-        golem_requirement.blue > -1 else False
-    pink = player.pink - golem_requirement.pink if player.pink - \
-        golem_requirement.pink > -1 else False
+    golem = golem_board[golem_index]
+    print(f'\nAttempting to capture golem {golem}.')
+
+    yellow = player.yellow - golems_cards[golem]['yellow'] if player.yellow - \
+        golems_cards[golem]['yellow'] > -1 else False
+    green = player.green - golems_cards[golem]['green'] if player.green - \
+        golems_cards[golem]['green'] > -1 else False
+    blue = player.blue - golems_cards[golem]['blue'] if player.blue - \
+        golems_cards[golem]['blue'] > -1 else False
+    pink = player.pink - golems_cards[golem]['pink'] if player.pink - \
+        golems_cards[golem]['pink'] > -1 else False
 
     if yellow != False and green != False and blue != False and pink != False:
         player.yellow = yellow
@@ -106,15 +145,27 @@ def capture_golem(golem_requirement, player):
         player.blue = blue
         player.pink = pink
         player.golems += 1
-        player.score += golem_requirement.points
+
+        points = golems_cards[golem]['points']
+        player.points += points
+        print(
+            f'Congratulations! Player {player.name} captured {points} points.')
+        golem_board.remove(golem)
     else:
-        print('Sorry, you do not meet the golem requirements. \n Missing requirements:')
+        print('Sorry, you do not meet the golem requirements. \nMissing requirements:')
         if yellow == False:
-            print('Yellow Crystals')
+            print(
+                f'{str(player.yellow - golems_cards[golem]["yellow"])} Yellow Crystals')
         if green == False:
-            print('Green Crystals')
+            print(
+                f'{str(player.green - golems_cards[golem]["green"])} Green Crystals')
         if blue == False:
-            print('Blue Crystals')
+            print(
+                f'{str(player.blue - golems_cards[golem]["blue"])} Blue Crystals')
         if pink == False:
-            print('Pink Crystals')
-    return player
+            print(
+                f'{str(player.pink - golems_cards[golem]["pink"])} Pink Crystals')
+    return player, golem_board
+
+
+# def claim_action_card(action_board):

@@ -25,6 +25,7 @@ class Board():
             self.golems_board.append(random_golem)
             self.golems_list.remove(random_golem)
 
+        # Assigning coins per each player times 2 and attaching it to the golem at index 0 and 1 if coin count isn't 0.
         copper_coin = len(self.players_list) * 2
         silver_coin = len(self.players_list) * 2
 
