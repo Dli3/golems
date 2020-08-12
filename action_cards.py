@@ -11,22 +11,20 @@ These two cards will be included in the player class.
 
 def upgrade(player):
     upgrade = input(
-        'Options:\nyellow or y\ngreen or g\nblue or b\npink or p\n').lower()
+        'Options:\nyellow or y\ngreen or g\nblue or b\n').lower()
     if upgrade == 'yellow' or upgrade == 'y':
         player.yellow += 1
     elif upgrade == 'green' or upgrade == 'g':
         player.green += 1
     elif upgrade == 'blue' or upgrade == 'b':
         player.blue += 1
-    elif upgrade == 'pink' or upgrade == 'p':
-        player.pink += 1
     return player
 
 
 def plus2yellow(player):
     print('Plus 2 yellow')
     player.yellow += 2
-    player.capacity += 2
+    player.crystal_capacity += 2
     return player
 
 
@@ -44,7 +42,7 @@ def minus2yellow_plus2green(player):
     player.green += 2
     player.blue += 0
     player.pink += 0
-    player.capacity += 0
+    player.crystal_capacity += 0
     return player
 
 
@@ -54,7 +52,7 @@ def minus2yellow_plus1blue(player):
     player.green += 0
     player.blue += 1
     player.pink += 0
-    player.capacity += -1
+    player.crystal_capacity += -1
     return player
 
 
@@ -64,7 +62,7 @@ def minus3yellow_plus1pink(player):
     player.green += 0
     player.blue += 0
     player.pink += 1
-    player.capacity += -2
+    player.crystal_capacity += -2
     return player
 
 
@@ -74,7 +72,7 @@ def minus3yellow_plus1green1blue(player):
     player.green += 1
     player.blue += 1
     player.pink += 0
-    player.capacity += -1
+    player.crystal_capacity += -1
     return player
 
 
@@ -84,7 +82,7 @@ def minus4yellow_plus1blue1pink(player):
     player.green += 0
     player.blue += 1
     player.pink += 1
-    player.capacity += -2
+    player.crystal_capacity += -2
     return player
 
 
@@ -94,7 +92,7 @@ def minus5yellow_plus2pink(player):
     player.green += 0
     player.blue += 0
     player.pink += 2
-    player.capacity += -3
+    player.crystal_capacity += -3
     return player
 
 
@@ -104,7 +102,7 @@ def minus5yellow_plus3blue(player):
     player.green += 0
     player.blue += 3
     player.pink += 0
-    player.capacity += -2
+    player.crystal_capacity += -2
     return player
 
 
@@ -114,7 +112,7 @@ def minus4yellow_plus2blue(player):
     player.green += 0
     player.blue += 2
     player.pink += 0
-    player.capacity += -2
+    player.crystal_capacity += -2
     return player
 
 
@@ -124,7 +122,7 @@ def minus3yellow_plus3green(player):
     player.green += 3
     player.blue += 0
     player.pink += 0
-    player.capacity += 0
+    player.crystal_capacity += 0
     return player
 
 
@@ -134,7 +132,7 @@ def minus1green_plus3yellow(player):
     player.green += -1
     player.blue += 0
     player.pink += 0
-    player.capacity += 2
+    player.crystal_capacity += 2
     return player
 
 
@@ -144,7 +142,7 @@ def minus2green_plus2blue(player):
     player.green += -2
     player.blue += 2
     player.pink += 0
-    player.capacity += 0
+    player.crystal_capacity += 0
     return player
 
 
@@ -154,7 +152,7 @@ def minus2green_plus1pink2yellow(player):
     player.green += -2
     player.blue += 0
     player.pink += 1
-    player.capacity += 1
+    player.crystal_capacity += 1
     return player
 
 
@@ -164,7 +162,7 @@ def minus2green_plus1blue3yellow(player):
     player.green += -2
     player.blue += 1
     player.pink += 0
-    player.capacity += 2
+    player.crystal_capacity += 2
     return player
 
 
@@ -174,7 +172,7 @@ def minus3green_plus1pink1blue1yellow(player):
     player.green += -3
     player.blue += 1
     player.pink += 1
-    player.capacity += 0
+    player.crystal_capacity += 0
     return player
 
 
@@ -184,7 +182,7 @@ def minus3green_plus2blue2yellow(player):
     player.green += -3
     player.blue += 2
     player.pink += 0
-    player.capacity += 1
+    player.crystal_capacity += 1
     return player
 
 
@@ -194,7 +192,7 @@ def minus3green_plus2pink(player):
     player.green += -3
     player.blue += 0
     player.pink += 2
-    player.capacity += -1
+    player.crystal_capacity += -1
     return player
 
 
@@ -204,7 +202,7 @@ def minus3green_plus3blue(player):
     player.green += -3
     player.blue += 3
     player.pink += 0
-    player.capacity += 0
+    player.crystal_capacity += 0
     return player
 
 
@@ -214,7 +212,7 @@ def minus1green1yellow_plus1pink(player):
     player.green += -1
     player.blue += 0
     player.pink += 1
-    player.capacity += -1
+    player.crystal_capacity += -1
     return player
 
 
@@ -224,7 +222,7 @@ def minus1blue_plus2green(player):
     player.green += 2
     player.blue += -1
     player.pink += 0
-    player.capacity += 1
+    player.crystal_capacity += 1
     return player
 
 
@@ -234,7 +232,7 @@ def minus1blue_plus1green4yellow(player):
     player.green += 1
     player.blue += -1
     player.pink += 0
-    player.capacity += 4
+    player.crystal_capacity += 4
     return player
 
 
@@ -244,7 +242,7 @@ def minus1blue_plus2green1yellow(player):
     player.green += 2
     player.blue += -1
     player.pink += 0
-    player.capacity += 2
+    player.crystal_capacity += 2
     return player
 
 
@@ -254,7 +252,7 @@ def minus2blue_plus2pink(player):
     player.green += 0
     player.blue += -2
     player.pink += 2
-    player.capacity += 0
+    player.crystal_capacity += 0
     return player
 
 
@@ -264,7 +262,7 @@ def minus2blue_plus1pink2green(player):
     player.green += 2
     player.blue += -2
     player.pink += 1
-    player.capacity += 1
+    player.crystal_capacity += 1
     return player
 
 
@@ -274,7 +272,7 @@ def minus2blue_plus3green2yellow(player):
     player.green += 3
     player.blue += -2
     player.pink += 0
-    player.capacity += 3
+    player.crystal_capacity += 3
     return player
 
 
@@ -284,7 +282,7 @@ def minus2blue_plus1pink1green2yellow(player):
     player.green += 1
     player.blue += -2
     player.pink += 1
-    player.capacity += 2
+    player.crystal_capacity += 2
     return player
 
 
@@ -294,7 +292,7 @@ def minus3blue_plus3pink(player):
     player.green += 0
     player.blue += -3
     player.pink += 3
-    player.capacity += 0
+    player.crystal_capacity += 0
     return player
 
 
@@ -304,7 +302,7 @@ def minus1blue2yellow_plus2pink(player):
     player.green += 0
     player.blue += -1
     player.pink += 2
-    player.capacity += -1
+    player.crystal_capacity += -1
     return player
 
 
@@ -314,7 +312,7 @@ def minus1pink_plus2blue(player):
     player.green += 0
     player.blue += 2
     player.pink += -1
-    player.capacity += 1
+    player.crystal_capacity += 1
     return player
 
 
@@ -324,7 +322,7 @@ def minus1pink_plus3green(player):
     player.green += 3
     player.blue += 0
     player.pink += -1
-    player.capacity += 2
+    player.crystal_capacity += 2
     return player
 
 
@@ -334,7 +332,7 @@ def minus1pink_plus1blue1green1yellow(player):
     player.green += 1
     player.blue += 1
     player.pink += -1
-    player.capacity += 2
+    player.crystal_capacity += 2
     return player
 
 
@@ -344,7 +342,7 @@ def minus1pink_plus2green2yellow(player):
     player.green += 2
     player.blue += 0
     player.pink += -1
-    player.capacity += 3
+    player.crystal_capacity += 3
     return player
 
 
@@ -354,7 +352,7 @@ def minus1pink_plus1blue3yellow(player):
     player.green += 0
     player.blue += 1
     player.pink += -1
-    player.capacity += 3
+    player.crystal_capacity += 3
     return player
 
 
@@ -364,7 +362,7 @@ def minus2pink_plus3blue1green1yellow(player):
     player.green += 1
     player.blue += 3
     player.pink += -2
-    player.capacity += 3
+    player.crystal_capacity += 3
     return player
 
 
@@ -374,7 +372,7 @@ def minus2pink_plus2blue3green(player):
     player.green += 3
     player.blue += 2
     player.pink += -2
-    player.capacity += 3
+    player.crystal_capacity += 3
     return player
 
 
@@ -384,7 +382,7 @@ def plus3yellow(player):
     player.green += 0
     player.blue += 0
     player.pink += 0
-    player.capacity += 3
+    player.crystal_capacity += 3
     return player
 
 
@@ -394,7 +392,7 @@ def plus4yellow(player):
     player.green += 0
     player.blue += 0
     player.pink += 0
-    player.capacity += 4
+    player.crystal_capacity += 4
     return player
 
 
@@ -404,7 +402,7 @@ def plus1green1yellow(player):
     player.green += 1
     player.blue += 0
     player.pink += 0
-    player.capacity += 2
+    player.crystal_capacity += 2
     return player
 
 
@@ -414,7 +412,7 @@ def plus2green(player):
     player.green += 2
     player.blue += 0
     player.pink += 0
-    player.capacity += 2
+    player.crystal_capacity += 2
     return player
 
 
@@ -424,7 +422,7 @@ def plus1blue(player):
     player.green += 0
     player.blue += 1
     player.pink += 0
-    player.capacity += 1
+    player.crystal_capacity += 1
     return player
 
 
@@ -434,7 +432,7 @@ def plus1blue1yellow(player):
     player.green += 0
     player.blue += 1
     player.pink += 0
-    player.capacity += 2
+    player.crystal_capacity += 2
     return player
 
 
@@ -444,7 +442,7 @@ def plus1pink(player):
     player.green += 0
     player.blue += 0
     player.pink += 1
-    player.capacity += 1
+    player.crystal_capacity += 1
     return player
 
 
@@ -454,65 +452,63 @@ def plus1green2yellow(player):
     player.green += 1
     player.blue += 0
     player.pink += 0
-    player.capacity += 3
+    player.crystal_capacity += 3
     return player
 
 
 def upgrade3(player):
     print('Three crystal upgrades.')
     print('Select first crystal to upgrade.')
-    upgrade1(player)
+    upgrade(player)
     print("Select second crystal to upgrade.")
-    upgrade1(player)
+    upgrade(player)
     print("Select third crystal to upgrade.")
-    upgrade1(player)
+    upgrade(player)
     return player
 
 
 actions_dict = {
-    'minus2yellow_plus2green': minus2yellow_plus2green,
-    'minus2yellow_plus1blue': minus2yellow_plus1blue,
-    'minus3yellow_plus1pink': minus3yellow_plus1pink,
-    'minus3yellow_plus1green1blue': minus3yellow_plus1green1blue,
-    'minus4yellow_plus1blue1pink': minus4yellow_plus1blue1pink,
-    'minus5yellow_plus2pink': minus5yellow_plus2pink,
-    'minus5yellow_plus3blue': minus5yellow_plus3blue,
-    'minus4yellow_plus2blue': minus4yellow_plus2blue,
-    'minus3yellow_plus3green': minus3yellow_plus3green,
-    'minus1green_plus3yellow': minus1green_plus3yellow,
-    'minus2green_plus2blue': minus2green_plus2blue,
-    'minus2green_plus1pink2yellow': minus2green_plus1pink2yellow,
-    'minus2green_plus1blue3yellow': minus2green_plus1blue3yellow,
-    'minus3green_plus1pink1blue1yellow': minus3green_plus1pink1blue1yellow,
-    'minus3green_plus2blue2yellow': minus3green_plus2blue2yellow,
-    'minus3green_plus2pink': minus3green_plus2pink,
-    'minus3green_plus3blue': minus3green_plus3blue,
-    'minus1green1yellow_plus1pink': minus1green1yellow_plus1pink,
-    'minus1blue_plus2green': minus1blue_plus2green,
-    'minus1blue_plus1green4yellow': minus1blue_plus1green4yellow,
-    'minus1blue_plus2green1yellow': minus1blue_plus2green1yellow,
-    'minus2blue_plus2pink': minus2blue_plus2pink,
-    'minus2blue_plus1pink2green': minus2blue_plus1pink2green,
-    'minus2blue_plus3green2yellow': minus2blue_plus3green2yellow,
-    'minus2blue_plus1pink1green2yellow': minus2blue_plus1pink1green2yellow,
-    'minus3blue_plus3pink': minus3blue_plus3pink,
-    'minus1blue2yellow_plus2pink': minus1blue2yellow_plus2pink,
-    'minus1pink_plus2blue': minus1pink_plus2blue,
-    'minus1pink_plus3green': minus1pink_plus3green,
-    'minus1pink_plus1blue1green1yellow': minus1pink_plus1blue1green1yellow,
-    'minus1pink_plus2green2yellow': minus1pink_plus2green2yellow,
-    'minus1pink_plus1blue3yellow': minus1pink_plus1blue3yellow,
-    'minus2pink_plus3blue1green1yellow': minus2pink_plus3blue1green1yellow,
-    'minus2pink_plus2blue3green': minus2pink_plus2blue3green,
-    'plus3yellow': plus3yellow,
-    'plus4yellow': plus4yellow,
-    'plus1green1yellow': plus1green1yellow,
-    'plus2green': plus2green,
-    'plus1blue': plus1blue,
-    'plus1blue1yellow': plus1blue1yellow,
-    'plus1pink': plus1pink,
-    'plus1green2yellow': plus1green2yellow,
-    'upgrade3': upgrade3,
-
-
+    'minus2yellow_plus2green': [-2, 2, 0, 0],
+    'minus2yellow_plus1blue': [-2, 0, 1, 0],
+    'minus3yellow_plus1pink': [-3, 0, 0, 1],
+    'minus3yellow_plus1green1blue': [-3, 1, 1, 0],
+    'minus4yellow_plus1blue1pink': [-4, 0, 1, 1],
+    'minus5yellow_plus2pink': [-5, 0, 0, 2],
+    'minus5yellow_plus3blue': [-5, 0, 3, 0],
+    'minus4yellow_plus2blue': [-4,  0, 2, 0],
+    'minus3yellow_plus3green': [-3, 3, 0, 0],
+    'minus1green_plus3yellow': [3, -1, 0, 0],
+    'minus2green_plus2blue': [0, -2, 2, 0],
+    'minus2green_plus1pink2yellow': [2, -2, 0, 1],
+    'minus2green_plus1blue3yellow': [3, -2, 1, 0],
+    'minus3green_plus1pink1blue1yellow': [1, -3, 1, 1],
+    'minus3green_plus2blue2yellow': [2, -3, 2, 0],
+    'minus3green_plus2pink': [0, -3, 0, 2],
+    'minus3green_plus3blue': [0, -3, 3, 0],
+    'minus1green1yellow_plus1pink': [-1, -1, 0, 1],
+    'minus1blue_plus2green': [0, 2, -1, 0],
+    'minus1blue_plus1green4yellow': [4, 1, -1, 0],
+    'minus1blue_plus2green1yellow': [1, 2, -1, 0],
+    'minus2blue_plus2pink': [0, 0, -2, -2],
+    'minus2blue_plus1pink2green': [0, 2, -2, 1],
+    'minus2blue_plus3green2yellow': [2, 3, -2, 0],
+    'minus2blue_plus1pink1green2yellow': [2, 1, -2, 1],
+    'minus3blue_plus3pink': [0, 0, -3, -3],
+    'minus1blue2yellow_plus2pink': [-2, 0, -1, 2],
+    'minus1pink_plus2blue': [0, 0, 2, -1],
+    'minus1pink_plus3green': [0, 3, 0, -1],
+    'minus1pink_plus1blue1green1yellow': [1, 1, 1, -1],
+    'minus1pink_plus2green2yellow': [2, 2, 0, -1],
+    'minus1pink_plus1blue3yellow': [3, 0, 1, -1],
+    'minus2pink_plus3blue1green1yellow': [1, 1, 3, -2],
+    'minus2pink_plus2blue3green': [0, 3, 2, -2],
+    'plus3yellow': [3, 0, 0, 0],
+    'plus4yellow': [4, 0, 0, 0],
+    'plus1green1yellow': [1, 1, 0, 0],
+    'plus2green': [0, 2, 0, 0],
+    'plus1blue': [0, 0, 1, 0],
+    'plus1blue1yellow': [1, 0, 1, 0],
+    'plus1pink': [0, 0, 0, 1],
+    'plus1green2yellow': [2, 1, 0, 0],
+    'upgrade3': upgrade3
 }

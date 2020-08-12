@@ -123,6 +123,34 @@ def play_action(player, actions_dict):
     return player
 
 
+def validate_player_crystals(actions_crystal, player):
+    player_arr = [player.yellow, player.green, player.blue, player.pink]
+
+    zip_object = zip(player_arr, actions_crystal)
+    results = []
+    for player_crystal, action_crystal in zip_object:
+        result.append(player_crystal - action_crystal)
+    validated = True
+    for result in results:
+        if result < 0:
+            validated = False
+    return validated
+
+
+def action_card(player, action_key):
+    if 'upgrade3' in str(action_key):
+        actions_dict['upgrade3'](player)
+    else:
+        player.update_yellow(action_key[0])
+        player.update_green(action_key[1])
+        player.update_blue(action_key[2])
+        player.update_pink(action_key[3])
+        crystals = action_key[0] + action_key[1] + \
+            action_key[2] + action_key[3]
+        player.update_crystal_capacity(crystals)
+    print("done")
+
+
 def capture_golem(golem_board, golem_index, player):
     '''
     This function verifies the crystals in the player's crystal cart meets the 
@@ -148,14 +176,14 @@ def capture_golem(golem_board, golem_index, player):
         golems_cards[golem]['pink'] > -1 else False
 
     if yellow != False and green != False and blue != False and pink != False:
-        player.yellow = yellow
-        player.green = green
-        player.blue = blue
-        player.pink = pink
-        player.golems += 1
+        player.update_yellow(yellow)
+        player.update_green(green)
+        player.update_blue(blue)
+        player.update_pink(pink)
+        player.update_golems()
 
         points = golems_cards[golem]['points']
-        player.points += points
+        player.update_points(points)
         print(
             f'Congratulations! Player {player.name} captured {points} points.')
         golem_board.remove(golem)

@@ -17,8 +17,8 @@ from gameplay import*
 
 # player = Player('dennis')
 # player.yellow += 5
-# player.capacity += 3
-# player.check_crystal_capacity()
+# player.crystal_capacity += 3
+# player.check_crystal_crystal_capacity()
 
 # #! Creating the players playing the game.
 # num_players = define_number_of_players()

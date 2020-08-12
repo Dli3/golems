@@ -42,8 +42,9 @@ board = Board()
 
 # print(board.board_state())
 
-
+print(actions_dict['minus3yellow_plus1pink'])
 p = Player('dennis')
+action_card(p, actions_dict['upgrade3'])
 # print(p.yellow)
 # print(p.green)
 # p.hand[1](p)
@@ -64,7 +65,7 @@ p = Player('dennis')
 # print(p.points)
 # print(board.golems_board)
 
-play_action(p, actions_dict)
+# play_action(p, actions_dict)
 
 print(p.yellow)
 print(p.green)
@@ -73,3 +74,4 @@ print(p.pink)
 
 print(p.hand)
 print(p.discard_pile)
+print(p.crystal_capacity)
