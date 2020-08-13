@@ -124,6 +124,15 @@ def play_action(player, actions_dict):
 
 
 def validate_player_crystals(actions_crystal, player):
+    '''
+    This function verifies that an action card doesn't result in a negative crystal count for 
+    the player's yellow, green, blue, and pink.
+
+    Args:
+        actions_crystal: The action card dictionary key. This is specified from the player's hand. 
+                          The list returned will be in the following order: [yellow, green, blue, pink]
+        player: The player whose attempting to play the action card.
+    '''
     player_arr = [player.yellow, player.green, player.blue, player.pink]
 
     zip_object = zip(player_arr, actions_crystal)
@@ -148,7 +157,6 @@ def action_card(player, action_key):
         crystals = action_key[0] + action_key[1] + \
             action_key[2] + action_key[3]
         player.update_crystal_capacity(crystals)
-    print("done")
 
 
 def capture_golem(golem_board, golem_index, player):

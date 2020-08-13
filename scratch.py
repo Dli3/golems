@@ -44,6 +44,8 @@ board = Board()
 
 print(actions_dict['minus3yellow_plus1pink'])
 p = Player('dennis')
+p.update_yellow(2)
+p.update_blue(1)
 action_card(p, actions_dict['upgrade3'])
 # print(p.yellow)
 # print(p.green)
