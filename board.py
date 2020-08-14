@@ -9,6 +9,7 @@ class Board():
         self.actions_list = [card for card in actions_dict]
 
         self.actions_board = create_action_board(self.actions_list)
+        self.actions_board_crystals = [0, 0, 0, 0, 0, 0]
         self.golems_board = create_golems_board(self.golems_list)
         self.players_list = players_list
 

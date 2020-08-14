@@ -91,6 +91,12 @@ def create_action_board(action_cards_list):
 
 
 #! Taking a turn actions
+# There are 4 actions available to the player.
+# 1. Play: play a card from their hand.
+# 2. Acquire Action Card: Acquire a action card(merchant card).
+# 3. Rest: Take all previously played cards back to their hand.
+# 4. Claim: Acquire a golem.
+
 def check_max_golems(players_list):
     '''
     Checks the golem count of each player provided in the players list.
@@ -102,12 +108,16 @@ def check_max_golems(players_list):
     golems_count = [x.golems for x in players_list]
     return max(golems_count)
 
+# Rest: Take all previously played cards back to their hand.
+
 
 def rest(discard_pile, player_hand):
     for card in discard_pile:
         player_hand.append(card)
     discard_pile.clear()
     return player_hand
+
+# Play: play a card from their hand.
 
 
 def play_action(player, actions_dict):
@@ -157,6 +167,8 @@ def action_card(player, action_key):
         crystals = action_key[0] + action_key[1] + \
             action_key[2] + action_key[3]
         player.update_crystal_capacity(crystals)
+
+# Claim: Acquire a golem.
 
 
 def capture_golem(golem_board, golem_index, player):
@@ -212,4 +224,11 @@ def capture_golem(golem_board, golem_index, player):
     return player, golem_board
 
 
-# def claim_action_card(action_board):
+# Acquire Action Card: Acquire a action card(merchant card).
+def claim_action_card(board, index_of_card):
+    '''
+    This turn function allows a player to claim an action card 
+    at the specified index on the board.actions_board list.
+    The requirement to claim a card at a certain index is to drop a crystal for every index passed.
+    We will check if the player has sufficient crystals to claim the card at the specified index.
+    '''
