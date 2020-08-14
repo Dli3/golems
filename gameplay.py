@@ -225,10 +225,22 @@ def capture_golem(golem_board, golem_index, player):
 
 
 # Acquire Action Card: Acquire a action card(merchant card).
-def claim_action_card(board, index_of_card):
+def claim_action_card(board, player):
     '''
     This turn function allows a player to claim an action card 
     at the specified index on the board.actions_board list.
     The requirement to claim a card at a certain index is to drop a crystal for every index passed.
     We will check if the player has sufficient crystals to claim the card at the specified index.
     '''
+
+
+def pay_for_claim_action(board, player):
+    crystal_count = player.yellow + player.green + player.blue + player.pink
+
+    card_index = None
+    while card_index != int:
+        card_index = int(input(
+            f'Which action card would you like to claim? Please enter the index between 0 and {len(board.actions_board)-1}.\n'))
+
+    claimable = True
+    if crystal_count > card_index:
