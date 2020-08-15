@@ -75,3 +75,39 @@ class Player():
                         'ERROR: Invalid input. Please enter the following valid options:\nyellow or y\ngreen or g\nblue or b\npink or p')
             except:
                 break
+
+    def crystal_sum(self):
+        crystal_sum = self.yellow + self.green + self.blue + self.pink
+        return crystal_sum
+
+    def pay_in_crystals(self):
+        crystal_sum = self.crystal_sum()
+        if crystal_sum > 0:
+            while True:
+                print(f"Which crystal would you like to pay in?\nOptions:")
+                if self.yellow > 0:
+                    print(f'{self.yellow} yellow crystals')
+                if self.green > 0:
+                    print(f'{self.green} green crystals')
+                if self.blue > 0:
+                    print(f'{self.blue} blue crystals')
+                if self.pink > 0:
+                    print(f'{self.pink} pink crystals')
+
+                acceptable = ['yellow', 'y', 'green',
+                              'g', 'blue', 'b', 'pink', 'p']
+                try:
+                    payment = input().lower()
+                    assert payment in acceptable
+                    if payment == 'yellow' or payment == 'y':
+                        self.yellow -= 1
+                    elif payment == 'green' or payment == 'g':
+                        self.green -= 1
+                    elif payment == 'blue' or payment == 'b':
+                        self.blue -= 1
+                    elif payment == 'pink' or payment == 'p':
+                        self.pink -= 1
+                except ValueError:
+                    print('ERROR: Please enter a valid input.')
+                break
+        return self

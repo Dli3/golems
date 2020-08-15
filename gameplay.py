@@ -148,7 +148,7 @@ def validate_player_crystals(actions_crystal, player):
     zip_object = zip(player_arr, actions_crystal)
     results = []
     for player_crystal, action_crystal in zip_object:
-        result.append(player_crystal - action_crystal)
+        results.append(player_crystal - action_crystal)
     validated = True
     for result in results:
         if result < 0:
@@ -232,15 +232,32 @@ def claim_action_card(board, player):
     The requirement to claim a card at a certain index is to drop a crystal for every index passed.
     We will check if the player has sufficient crystals to claim the card at the specified index.
     '''
+    if pay_for_action_card(board, player):
+        pass
 
 
-def pay_for_claim_action(board, player):
-    crystal_count = player.yellow + player.green + player.blue + player.pink
+def pay_for_action_card(board, player):
+    crystal_count = player.crystal_sum()
+    print(crystal_count)
 
     card_index = None
     while card_index != int:
-        card_index = int(input(
-            f'Which action card would you like to claim? Please enter the index between 0 and {len(board.actions_board)-1}.\n'))
+        try:
+            card_index = int(input(
+                f'Which action card would you like to claim? Please enter the index between 1 and {len(board.actions_board)}.\n'))
+        except ValueError:
+            print(
+                f'ERROR: Please enter valid input between 1-{len(board.actions_board)}.')
+            continue
+        break
 
     claimable = True
-    if crystal_count > card_index:
+    if crystal_count >= card_index:
+        for _ in range(card_index-1):
+            player.pay_in_crystals()
+            board.actions_board_crystals[_] += 1
+    else:
+        print(f'ERROR: Insufficient crystal funds: {player.crystal_sum()}')
+        claimable = False
+    print(board.actions_board_crystals)
+    return claimable

@@ -1,6 +1,7 @@
-from gameplay import *
+from gameplay import*
 from golems import*
 from action_cards import*
+import random
 
 
 class Board():
