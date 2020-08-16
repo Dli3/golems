@@ -103,6 +103,7 @@ class Player():
                     payment = input().lower()
                     assert payment in acceptable
                     if payment == 'yellow' or payment == 'y':
+                        payment = 'yellow'
                         if self.yellow > 0:
                             self.yellow -= 1
                         else:
@@ -110,6 +111,7 @@ class Player():
                                 'ERROR: Insufficient funds. Please select from the available crystal funds.')
                             continue
                     elif payment == 'green' or payment == 'g':
+                        payment = 'green'
                         if self.green > 0:
                             self.green -= 1
                         else:
@@ -117,6 +119,7 @@ class Player():
                                 'ERROR: Insufficient funds. Please select from the available crystal funds.')
                             continue
                     elif payment == 'blue' or payment == 'b':
+                        payment = 'blue'
                         if self.blue > 0:
                             self.blue -= 1
                         else:
@@ -124,6 +127,7 @@ class Player():
                                 'ERROR: Insufficient funds. Please select from the available crystal funds.')
                             continue
                     elif payment == 'pink' or payment == 'p':
+                        payment = 'pink'
                         if self.pink > 0:
                             self.pink -= 1
                         else:
@@ -133,4 +137,4 @@ class Player():
                 except ValueError:
                     print('ERROR: Please enter a valid input.')
                 break
-        return self
+        return payment

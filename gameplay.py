@@ -126,7 +126,7 @@ def play_action(player, actions_dict):
         - player: The player that's performing the action.
         - actions_dict: The actions dictionary that the action cards reference. 
     '''
-    print(f"{player.name}'s hand: {player.hand}")
+    print(f"\n{player.name}'s hand: {player.hand}")
     if len(player.hand) > 0:
         card_index = None
         while card_index != int:
@@ -140,6 +140,7 @@ def play_action(player, actions_dict):
         # player.hand[card_index](player)
         card = player.hand[card_index]
         print(card)
+        action_card(player, card)
         player.discard_pile.append(player.hand[card_index])
         del player.hand[card_index]
     else:
@@ -151,12 +152,12 @@ def action_card(player, action_key):
     if 'upgrade3' in str(action_key):
         actions_dict['upgrade3'](player)
     else:
-        player.update_yellow(action_key[0])
-        player.update_green(action_key[1])
-        player.update_blue(action_key[2])
-        player.update_pink(action_key[3])
-        crystals = action_key[0] + action_key[1] + \
-            action_key[2] + action_key[3]
+        player.update_yellow(actions_dict[action_key][0])
+        player.update_green(actions_dict[action_key][1])
+        player.update_blue(actions_dict[action_key][2])
+        player.update_pink(actions_dict[action_key][3])
+        crystals = actions_dict[action_key][0] + actions_dict[action_key][1] + \
+            actions_dict[action_key][2] + actions_dict[action_key][3]
         player.update_crystal_capacity(crystals)
     return player
 
@@ -254,7 +255,6 @@ def claim_action_card(board, player):
                 f'Which action card would you like to claim? Please enter the index between 0 and {len(board.actions_board)-1}.\n'))
             if card_index not in range(0, 6):
                 continue
-
         except ValueError:
             print(
                 f'ERROR: Please enter valid input between 0-{len(board.actions_board)}.')
@@ -264,6 +264,22 @@ def claim_action_card(board, player):
     if pay_for_action_card(board, player, card_index) == True:
         print('Appending')
         player.update_hand(board.actions_board[card_index])
+        print(board.actions_board[card_index]['yellow'])
+        if board.actions_board[card_index]['yellow'] > 0:
+            player.update_yellow(board.actions_board[card_index]['yellow'])
+            board.actions_board[card_index]['yellow'] = 0
+
+        if board.actions_board[card_index]['green'] > 0:
+            player.update_green(board.actions_board[card_index]['green'])
+            board.actions_board[card_index]['green'] = 0
+
+        if board.actions_board[card_index]['blue'] > 0:
+            player.update_blue(board.actions_board[card_index]['blue'])
+            board.actions_board[card_index]['blue'] = 0
+
+        if board.actions_board[card_index]['pink'] > 0:
+            player.update_pink(board.actions_board[card_index]['pink'])
+            board.actions_board[card_index]['pink'] = 0
         del board.actions_board[card_index]
 
 
@@ -272,10 +288,10 @@ def pay_for_action_card(board, player, card_index):
     print('Available number of crystals to spend: ' + str(crystal_count))
 
     claimable = True
-    if crystal_count+1 >= card_index:
-        for _ in range(card_index):
-            player.pay_in_crystals()
-            board.actions_board_crystals[_] += 1
+    if crystal_count >= card_index - 1:
+        for _ in range(card_index-1):
+            crystal_paid = player.pay_in_crystals()
+            board.actions_board_crystals[_][crystal_paid] += 1
         print(
             f'Successfully paid the crystal requirements for action card capture at index {card_index}.\n')
     else:

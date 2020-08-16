@@ -10,7 +10,14 @@ class Board():
         self.actions_list = [card for card in actions_dict]
 
         self.actions_board = create_action_board(self.actions_list)
-        self.actions_board_crystals = [0, 0, 0, 0, 0, 15]
+        self.actions_board_crystals = [
+            {'position': 'index_0', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
+            {'position': 'index_1', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
+            {'position': 'index_2', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
+            {'position': 'index_3', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
+            {'position': 'index_4', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
+            {'position': 'index_5', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0}
+        ]
         self.golems_board = create_golems_board(self.golems_list)
         self.players_list = players_list
 

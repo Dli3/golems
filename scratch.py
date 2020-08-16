@@ -82,7 +82,29 @@ print(board.actions_board_crystals[5])
 print(board.actions_board)
 
 
-claim_action_card(board, p)
-play_action(p, actions_dict)
-print(p.discard_pile)
-print(p.hand)
+# claim_action_card(board, p)
+# play_action(p, actions_dict)
+# print(p.discard_pile)
+# print(p.hand)
+# print(p.yellow)
+# print(p.green)
+# print(p.blue)
+# print(p.pink)
+# print(p.crystal_capacity)
+
+# dicts = [
+#     {'position': 'index_0', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
+#     {'position': 'index_1', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
+#     {'position': 'index_2', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
+#     {'position': 'index_3', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
+#     {'position': 'index_4', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
+#     {'position': 'index_5', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0}
+# ]
+
+# print(dicts)
+# dicts[0]['green'] += 5
+# print(dicts[0])
+
+pay_for_action_card(board, p, 5)
+
+print(board.actions_board_crystals)
