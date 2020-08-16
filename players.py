@@ -34,6 +34,9 @@ class Player():
     def update_points(self, points):
         self.points += points
 
+    def update_hand(self, card):
+        self.hand.append(card)
+
     def update_crystal_capacity(self, crystals):
         self.crystal_capacity += crystals
 
@@ -100,13 +103,33 @@ class Player():
                     payment = input().lower()
                     assert payment in acceptable
                     if payment == 'yellow' or payment == 'y':
-                        self.yellow -= 1
+                        if self.yellow > 0:
+                            self.yellow -= 1
+                        else:
+                            print(
+                                'ERROR: Insufficient funds. Please select from the available crystal funds.')
+                            continue
                     elif payment == 'green' or payment == 'g':
-                        self.green -= 1
+                        if self.green > 0:
+                            self.green -= 1
+                        else:
+                            print(
+                                'ERROR: Insufficient funds. Please select from the available crystal funds.')
+                            continue
                     elif payment == 'blue' or payment == 'b':
-                        self.blue -= 1
+                        if self.blue > 0:
+                            self.blue -= 1
+                        else:
+                            print(
+                                'ERROR: Insufficient funds. Please select from the available crystal funds.')
+                            continue
                     elif payment == 'pink' or payment == 'p':
-                        self.pink -= 1
+                        if self.pink > 0:
+                            self.pink -= 1
+                        else:
+                            print(
+                                'ERROR: Insufficient funds. Please select from the available crystal funds.')
+                            continue
                 except ValueError:
                     print('ERROR: Please enter a valid input.')
                 break

@@ -108,28 +108,56 @@ def check_max_golems(players_list):
     golems_count = [x.golems for x in players_list]
     return max(golems_count)
 
+
 # Rest: Take all previously played cards back to their hand.
-
-
 def rest(discard_pile, player_hand):
     for card in discard_pile:
         player_hand.append(card)
     discard_pile.clear()
     return player_hand
 
+
 # Play: play a card from their hand.
-
-
 def play_action(player, actions_dict):
-    print(f"{player.name}'s hand: {player.hand}")
-    card_index = None
-    while card_index != int:
-        card_index = int(input(
-            f'Which action card would you like to play? Please enter the index between 0 and {len(player.hand )-1}.\n'))
+    '''
+    Allows the player to play an action card from their hand. 
 
-    player.hand[card_index](player)
-    player.discard_pile.append(player.hand[card_index])
-    del player.hand[card_index]
+    Args:
+        - player: The player that's performing the action.
+        - actions_dict: The actions dictionary that the action cards reference. 
+    '''
+    print(f"{player.name}'s hand: {player.hand}")
+    if len(player.hand) > 0:
+        card_index = None
+        while card_index != int:
+            try:
+                card_index = int(input(
+                    f'Which action card would you like to play? Please enter the index between 0 and {len(player.hand )-1}.\n'))
+                break
+            except ValueError:
+                print(
+                    'ERROR: Please enter a valid input between 0 and {len(player.hand )-1}.\n')
+        # player.hand[card_index](player)
+        card = player.hand[card_index]
+        print(card)
+        player.discard_pile.append(player.hand[card_index])
+        del player.hand[card_index]
+    else:
+        print(f"ERROR: Insufficent action cards in {player.name}'s hand.")
+    return player
+
+
+def action_card(player, action_key):
+    if 'upgrade3' in str(action_key):
+        actions_dict['upgrade3'](player)
+    else:
+        player.update_yellow(action_key[0])
+        player.update_green(action_key[1])
+        player.update_blue(action_key[2])
+        player.update_pink(action_key[3])
+        crystals = action_key[0] + action_key[1] + \
+            action_key[2] + action_key[3]
+        player.update_crystal_capacity(crystals)
     return player
 
 
@@ -156,21 +184,7 @@ def validate_player_crystals(actions_crystal, player):
     return validated
 
 
-def action_card(player, action_key):
-    if 'upgrade3' in str(action_key):
-        actions_dict['upgrade3'](player)
-    else:
-        player.update_yellow(action_key[0])
-        player.update_green(action_key[1])
-        player.update_blue(action_key[2])
-        player.update_pink(action_key[3])
-        crystals = action_key[0] + action_key[1] + \
-            action_key[2] + action_key[3]
-        player.update_crystal_capacity(crystals)
-
 # Claim: Acquire a golem.
-
-
 def capture_golem(golem_board, golem_index, player):
     '''
     This function verifies the crystals in the player's crystal cart meets the 
@@ -232,32 +246,39 @@ def claim_action_card(board, player):
     The requirement to claim a card at a certain index is to drop a crystal for every index passed.
     We will check if the player has sufficient crystals to claim the card at the specified index.
     '''
-    if pay_for_action_card(board, player):
-        pass
-
-
-def pay_for_action_card(board, player):
-    crystal_count = player.crystal_sum()
-    print(crystal_count)
 
     card_index = None
     while card_index != int:
         try:
             card_index = int(input(
-                f'Which action card would you like to claim? Please enter the index between 1 and {len(board.actions_board)}.\n'))
+                f'Which action card would you like to claim? Please enter the index between 0 and {len(board.actions_board)-1}.\n'))
+            if card_index not in range(0, 6):
+                continue
+
         except ValueError:
             print(
-                f'ERROR: Please enter valid input between 1-{len(board.actions_board)}.')
+                f'ERROR: Please enter valid input between 0-{len(board.actions_board)}.')
             continue
         break
 
+    if pay_for_action_card(board, player, card_index) == True:
+        print('Appending')
+        player.update_hand(board.actions_board[card_index])
+        del board.actions_board[card_index]
+
+
+def pay_for_action_card(board, player, card_index):
+    crystal_count = player.crystal_sum()
+    print('Available number of crystals to spend: ' + str(crystal_count))
+
     claimable = True
-    if crystal_count >= card_index:
-        for _ in range(card_index-1):
+    if crystal_count+1 >= card_index:
+        for _ in range(card_index):
             player.pay_in_crystals()
             board.actions_board_crystals[_] += 1
+        print(
+            f'Successfully paid the crystal requirements for action card capture at index {card_index}.\n')
     else:
-        print(f'ERROR: Insufficient crystal funds: {player.crystal_sum()}')
+        print(f'ERROR: Insufficient crystal funds: {player.crystal_sum()}\n')
         claimable = False
-    print(board.actions_board_crystals)
     return claimable

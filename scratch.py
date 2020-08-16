@@ -78,4 +78,11 @@ print(p.hand)
 print(p.discard_pile)
 print(p.crystal_capacity)
 
-pay_for_action_card(board, p)
+print(board.actions_board_crystals[5])
+print(board.actions_board)
+
+
+claim_action_card(board, p)
+play_action(p, actions_dict)
+print(p.discard_pile)
+print(p.hand)
