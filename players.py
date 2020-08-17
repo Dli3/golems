@@ -138,3 +138,19 @@ class Player():
                     print('ERROR: Please enter a valid input.')
                 break
         return payment
+
+    def crystal_count(self):
+        print(f"{self.name}'s crystals:\n{self.yellow} Yellow crystals\n{self.green} Green crystals\n{self.blue} Blue crystals\n{self.pink} Pink crystals\n")
+        return None
+
+    def check_discard_pile(self):
+        print(f"{self.name}'s discard pile: {self.discard_pile}'")
+        return self.discard_pile
+
+    def check_hand(self):
+        print(f"{self.name}'s hand: {self.hand}'")
+        return self.hand
+
+    def check_golems(self):
+        print(f"{self.name}'s captured golems: {self.golems}'")
+        return self.golems

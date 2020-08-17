@@ -110,21 +110,28 @@ def check_max_golems(players_list):
 
 
 # Rest: Take all previously played cards back to their hand.
-def rest(discard_pile, player_hand):
-    for card in discard_pile:
-        player_hand.append(card)
-    discard_pile.clear()
-    return player_hand
-
+# def rest(discard_pile, player_hand):
+#     for card in discard_pile:
+#         player_hand.append(card)
+#     discard_pile.clear()
+#     return player_hand
+def rest(player):
+    for card in player.check_discard_pile():
+        player.hand.append(card)
+        print(f"{card} returned to {player.name}'s hand.")
+    player.discard_pile.clear()
+    return player
 
 # Play: play a card from their hand.
+
+
 def play_action(player, actions_dict):
     '''
     Allows the player to play an action card from their hand. 
 
     Args:
-        - player: The player that's performing the action.
-        - actions_dict: The actions dictionary that the action cards reference. 
+        player: The player that's performing the action.
+        actions_dict: The actions dictionary that the action cards reference. 
     '''
     print(f"\n{player.name}'s hand: {player.hand}")
     if len(player.hand) > 0:
@@ -186,7 +193,7 @@ def validate_player_crystals(actions_crystal, player):
 
 
 # Claim: Acquire a golem.
-def capture_golem(golem_board, golem_index, player):
+def capture_golem(golem_board, player):
     '''
     This function verifies the crystals in the player's crystal cart meets the 
     requirements of the golem they're attempting to capture.
@@ -198,6 +205,20 @@ def capture_golem(golem_board, golem_index, player):
         golem: The golem card they're trying to capture.
         player: The player trying to capture the golem.
     '''
+
+    golem_index = None
+    while golem_index != int:
+        try:
+            golem_index = int(input(
+                f'Which action card would you like to claim? Please enter the index between 0 and {len(golem_board)-1}.\n'))
+            if golem_index not in range(0, 5):
+                continue
+        except ValueError:
+            print(
+                f'ERROR: Please enter valid input between 0-{len(golems_board)}.')
+            continue
+        break
+
     golem = golem_board[golem_index]
     print(f'\nAttempting to capture golem {golem}.')
 
@@ -247,7 +268,7 @@ def claim_action_card(board, player):
     The requirement to claim a card at a certain index is to drop a crystal for every index passed.
     We will check if the player has sufficient crystals to claim the card at the specified index.
     '''
-
+    # Asking the player which action card they would like to claim from the actions board.
     card_index = None
     while card_index != int:
         try:
@@ -261,10 +282,10 @@ def claim_action_card(board, player):
             continue
         break
 
+    # If pay_for_action_card returns True, append the action card to player's hand.
     if pay_for_action_card(board, player, card_index) == True:
-        print('Appending')
         player.update_hand(board.actions_board[card_index])
-        print(board.actions_board[card_index]['yellow'])
+        # If there's crystals on the card index, the player also gains the crystals.
         if board.actions_board[card_index]['yellow'] > 0:
             player.update_yellow(board.actions_board[card_index]['yellow'])
             board.actions_board[card_index]['yellow'] = 0
@@ -280,10 +301,20 @@ def claim_action_card(board, player):
         if board.actions_board[card_index]['pink'] > 0:
             player.update_pink(board.actions_board[card_index]['pink'])
             board.actions_board[card_index]['pink'] = 0
+
         del board.actions_board[card_index]
 
 
 def pay_for_action_card(board, player, card_index):
+    '''
+    This function verifies the user has enough crystals to deposit in the indexes preceding the 
+    action card they would like to claim. 
+
+    Args:
+        board: The board containing the action cards.
+        player: The player attempting to claim the action card.
+        card_index: The action card's index on the action board.
+    '''
     crystal_count = player.crystal_sum()
     print('Available number of crystals to spend: ' + str(crystal_count))
 
@@ -298,3 +329,33 @@ def pay_for_action_card(board, player, card_index):
         print(f'ERROR: Insufficient crystal funds: {player.crystal_sum()}\n')
         claimable = False
     return claimable
+
+
+def take_a_turn(player):
+    '''
+    This function allows to player to select one out of the 4 turn options.
+    Options: 
+        1. Play: play a card from their hand.
+        2. Acquire Action Card: Acquire a action card(merchant card).
+        3. Rest: Take all previously played cards back to their hand.
+        4. Claim: Acquire a golem.
+    '''
+    acceptable = ['a', 'b', 'c', 'd']
+    moves = 1
+    while moves > 0:
+        choice = input(
+            'What action would you like to make for your turn?\nOptions:\nA = Play action card\nB = Acquire an action card from the action card board\nC = Rest\nD = Claim a golem\n').lower()
+        if choice in acceptable:
+            if choice == 'a':
+                play_action(player, actions_dict)
+            elif choice == 'b':
+                claim_action_card(board, player)
+            elif choice == 'c':
+                rest()
+            elif choice == 'd':
+                capture_golem(board, player)
+
+        else:
+            print('ERROR: Invalid input. Please enter a valid input.')
+            continue
+        moves -= 1

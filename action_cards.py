@@ -16,19 +16,21 @@ def upgrade(player):
         try:
             upgrade = input(
                 'Options:\nyellow or y\ngreen or g\nblue or b\n').lower()
-            assert upgrade in acceptable
-            if upgrade == 'yellow' or upgrade == 'y':
-                player.yellow += -1
-                player.green += 1
-                assert player.yellow > -1
-            elif upgrade == 'green' or upgrade == 'g':
-                player.green += -1
-                player.blue += 1
-                assert player.green > -1
-            elif upgrade == 'blue' or upgrade == 'b':
-                player.blue += -1
-                player.pink += 1
-                assert player.blue > -1
+            if upgrade in acceptable:
+                if upgrade == 'yellow' or upgrade == 'y':
+                    player.yellow += -1
+                    player.green += 1
+                    assert player.yellow > -1
+                elif upgrade == 'green' or upgrade == 'g':
+                    player.green += -1
+                    player.blue += 1
+                    assert player.green > -1
+                elif upgrade == 'blue' or upgrade == 'b':
+                    player.blue += -1
+                    player.pink += 1
+                    assert player.blue > -1
+                else:
+                    continue
             break
         except:
             print(

@@ -16,8 +16,7 @@ class Board():
             {'position': 'index_2', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
             {'position': 'index_3', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
             {'position': 'index_4', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
-            {'position': 'index_5', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0}
-        ]
+            {'position': 'index_5', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0}]
         self.golems_board = create_golems_board(self.golems_list)
         self.players_list = players_list
 
@@ -57,6 +56,13 @@ class Board():
         return self.actions_board
 
     def board_state(self):
+        '''
+        Prints the current status of the board. 
+        Includes the following:
+            - Golems and coins placed on them
+            - Action cards and the crystals placed on them
+        '''
+        print('\nBOARD STATE:')
         print(f'\nGolems Board:\nCount: {len(self.golems_board)}')
         for golem in self.golems_board:
             print(golem, golems_cards[golem])
