@@ -1,6 +1,6 @@
-from golems import golems_cards
+from .golems import golems_cards
 import random
-from action_cards import plus2yellow, upgrade_2
+from .action_cards import plus2yellow, upgrade_2
 
 
 class Player():
