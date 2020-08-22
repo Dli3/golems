@@ -2,9 +2,9 @@
 These functions are the gameplay actions.
 '''
 import random
-from players import Player
-from action_cards import actions_dict
-from golems import golems_cards
+from .players import Player
+from .action_cards import actions_dict
+from .golems import golems_cards
 
 #! Initializing the game.
 
@@ -33,6 +33,15 @@ def define_number_of_players():
             break
     print(f'We have {num_players} players playing!\n')
     return num_players
+
+
+def players_list():
+    num_players = define_number_of_players()
+    players_list = []
+    for total_players in range(num_players):
+        name = input(f'\nWhat is your name player {total_players + 1}?\n')
+        players_list.append(Player(name))
+    return players_list
 
 
 def starting_hand(players_list):
@@ -315,7 +324,7 @@ def pay_for_action_card(board, player, card_index):
         player: The player attempting to claim the action card.
         card_index: The action card's index on the action board.
     '''
-    crystal_count = player.crystal_sum()
+    crystal_count = player.check_total_crystals()
     print('Available number of crystals to spend: ' + str(crystal_count))
 
     claimable = True
@@ -326,12 +335,13 @@ def pay_for_action_card(board, player, card_index):
         print(
             f'Successfully paid the crystal requirements for action card capture at index {card_index}.\n')
     else:
-        print(f'ERROR: Insufficient crystal funds: {player.crystal_sum()}\n')
+        print(
+            f'ERROR: Insufficient crystal funds: {player.check_total_crystals()}\n')
         claimable = False
     return claimable
 
 
-def take_a_turn(player):
+def take_a_turn(board, player):
     '''
     This function allows to player to select one out of the 4 turn options.
     Options: 
@@ -351,7 +361,7 @@ def take_a_turn(player):
             elif choice == 'b':
                 claim_action_card(board, player)
             elif choice == 'c':
-                rest()
+                rest(player)
             elif choice == 'd':
                 capture_golem(board, player)
 

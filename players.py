@@ -18,15 +18,19 @@ class Player():
 
     def update_yellow(self, yellow):
         self.yellow += yellow
+        self.crystal_capacity += yellow
 
     def update_green(self, green):
         self.green += green
+        self.crystal_capacity += green
 
     def update_blue(self, blue):
         self.blue += blue
+        self.crystal_capacity += blue
 
     def update_pink(self, pink):
         self.pink += pink
+        self.crystal_capacity += pink
 
     def update_golems(self):
         self.golems += 1
@@ -40,9 +44,10 @@ class Player():
     def update_crystal_capacity(self, crystals):
         self.crystal_capacity += crystals
 
-    def check_crystal_crystal_capacity(self):
+    def check_crystal_capacity(self):
         while self.crystal_capacity > 10:
             try:
+                print(f'{self.name} crystal cart count: {self.crystal_capacity}')
                 print(
                     f"\n{self.name}'s crystal cart is over crystal_capacity by {self.crystal_capacity-10}")
                 print(
@@ -79,13 +84,13 @@ class Player():
             except:
                 break
 
-    def crystal_sum(self):
-        crystal_sum = self.yellow + self.green + self.blue + self.pink
-        return crystal_sum
+    def check_total_crystals(self):
+        check_total_crystals = self.yellow + self.green + self.blue + self.pink
+        return check_total_crystals
 
     def pay_in_crystals(self):
-        crystal_sum = self.crystal_sum()
-        if crystal_sum > 0:
+        total_crystals = self.check_total_crystals()
+        if total_crystals > 0:
             while True:
                 print(f"Which crystal would you like to pay in?\nOptions:")
                 if self.yellow > 0:
@@ -106,6 +111,7 @@ class Player():
                         payment = 'yellow'
                         if self.yellow > 0:
                             self.yellow -= 1
+                            self.crystal_capacity -= 1
                         else:
                             print(
                                 'ERROR: Insufficient funds. Please select from the available crystal funds.')
@@ -114,6 +120,8 @@ class Player():
                         payment = 'green'
                         if self.green > 0:
                             self.green -= 1
+                            self.crystal_capacity -= 1
+
                         else:
                             print(
                                 'ERROR: Insufficient funds. Please select from the available crystal funds.')
@@ -122,6 +130,7 @@ class Player():
                         payment = 'blue'
                         if self.blue > 0:
                             self.blue -= 1
+                            self.crystal_capacity -= 1
                         else:
                             print(
                                 'ERROR: Insufficient funds. Please select from the available crystal funds.')
@@ -130,6 +139,7 @@ class Player():
                         payment = 'pink'
                         if self.pink > 0:
                             self.pink -= 1
+                            self.crystal_capacity -= 1
                         else:
                             print(
                                 'ERROR: Insufficient funds. Please select from the available crystal funds.')

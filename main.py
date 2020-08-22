@@ -5,27 +5,13 @@ import random
 from board import Board
 from gameplay import*
 
-# p = ['dennis', 'test']
-# board = Board(players_list=p)
-# board.check_golem_board()
-# a = board.golems_board[1]
-# board.board_state()
-# print(board.players_list)
-# del board.golems_board[1]
-# board.check_golem_board()
-# board.board_state()
 
-# player = Player('dennis')
-# player.yellow += 5
-# player.crystal_capacity += 3
-# player.check_crystal_crystal_capacity()
-
-# #! Creating the players playing the game.
-# num_players = define_number_of_players()
-# players_list = []
-# for total_players in range(num_players):
-#     name = input(f'\nWhat is your name player {total_players + 1}?\n')
-#     players_list.append(Player(name))
+#! Creating the players playing the game.
+num_players = define_number_of_players()
+players_list = []
+for total_players in range(num_players):
+    name = input(f'\nWhat is your name player {total_players + 1}?\n')
+    players_list.append(Player(name))
 
 # starting_hand(players_list)
 
