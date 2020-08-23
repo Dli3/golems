@@ -6,7 +6,7 @@ from .gameplay import *
 
 @fixture(autouse=True, scope='function')
 def setup():
-    pass
+    print('\n')
 
 
 @fixture(scope='function')

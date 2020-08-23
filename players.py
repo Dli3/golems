@@ -150,17 +150,17 @@ class Player():
         return payment
 
     def crystal_count(self):
-        print(f"{self.name}'s crystals:\n{self.yellow} Yellow crystals\n{self.green} Green crystals\n{self.blue} Blue crystals\n{self.pink} Pink crystals\n")
-        return None
+        print(f"\n{self.name}'s crystals:\nPlayer's Crystal Capacity: {self.crystal_capacity}\n{self.yellow} Yellow crystals\n{self.green} Green crystals\n{self.blue} Blue crystals\n{self.pink} Pink crystals\n")
+        return self.crystal_capacity
 
     def check_discard_pile(self):
-        print(f"{self.name}'s discard pile: {self.discard_pile}'")
+        print(f"\n{self.name}'s discard pile: {self.discard_pile}'")
         return self.discard_pile
 
     def check_hand(self):
-        print(f"{self.name}'s hand: {self.hand}'")
+        print(f"\n{self.name}'s hand: {self.hand}'")
         return self.hand
 
     def check_golems(self):
-        print(f"{self.name}'s captured golems: {self.golems}'")
+        print(f"\n{self.name}'s captured golems: {self.golems}'")
         return self.golems

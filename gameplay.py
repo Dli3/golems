@@ -15,23 +15,17 @@ def define_number_of_players():
     Validation is in place to verify the a integer is specified between 1-5 players.
     '''
     while True:
-        try:
-            num_players = int(input('How many players?\n'))
-        except ValueError:
-            print('Sorry, please enter a valid number input between 1-5.')
-            continue
+        num_players = None
+        while num_players != int and num_players not in range(1, 6):
+            try:
+                num_players = int(
+                    input('This game can be played with 1-5 players. How many players are playing this round of golem?\n'))
+            except ValueError:
+                print('Sorry, please enter a valid number input between 1-5.')
+                continue
         else:
             break
-    while num_players not in range(1, 6):
-        try:
-            num_players = int(
-                input('Please enter a valid number input between 1-5.\n'))
-        except ValueError:
-            print('Sorry, please enter a valid number input between 1-5.\n')
-            continue
-        else:
-            break
-    print(f'We have {num_players} players playing!\n')
+    print(f'Thank you! We have {num_players} players playing!\n')
     return num_players
 
 
@@ -47,22 +41,43 @@ def players_list():
 def starting_hand(players_list):
     # Player 1
     if 0 in range(len(players_list)):
-        players_list[0].yellow += 3
+        starting_crystal = 3
+        players_list[0].yellow += starting_crystal
+        players_list[0].crystal_capacity += starting_crystal
+
     # Player 2
     if 1 in range(len(players_list)):
-        players_list[1].yellow += 4
+        starting_crystal = 4
+        players_list[1].yellow += starting_crystal
+        players_list[1].crystal_capacity += starting_crystal
+
     # Player 3
     if 2 in range(len(players_list)):
-        players_list[2].yellow += 4
+        starting_crystal = 4
+        players_list[2].yellow += starting_crystal
+        players_list[2].crystal_capacity += starting_crystal
+
     # Player 4
     if 3 in range(len(players_list)):
+        starting_crystal_yellow = 3
+        starting_crystal_green = 1
+        starting_crystal_total = starting_crystal_yellow + starting_crystal_green
+
         players_list[3].yellow += 3
         players_list[3].green += 1
+        players_list[3].crystal_capacity += starting_crystal_total
+
     # Player 5
     if 4 in range(len(players_list)):
+        starting_crystal_yellow = 3
+        starting_crystal_green = 1
+        starting_crystal_total = starting_crystal_yellow + starting_crystal_green
+
         players_list[4].yellow += 3
         players_list[4].green += 1
-    return None
+        players_list[4].crystal_capacity += starting_crystal_total
+
+    return players_list
 
 
 def create_golems_board(golems_list):
