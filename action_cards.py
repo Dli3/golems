@@ -10,39 +10,59 @@ These two cards will be included in the player class.
 
 
 def upgrade(player):
-    while True:
+    if player.yellow or player.green or player.blue or player.pink > 0:
+
         print(f"{player.name}'s hand: {player.yellow} yellow, {player.green} green, {player.blue} blue, and {player.pink} pink.")
-        acceptable = ['yellow', 'y', 'green', 'g', 'blue', 'b']
-        try:
-            upgrade = input(
-                'Options:\nyellow or y\ngreen or g\nblue or b\n').lower()
-            if upgrade in acceptable:
-                if upgrade == 'yellow' or upgrade == 'y':
-                    player.yellow += -1
-                    player.green += 1
-                    assert player.yellow > -1
-                elif upgrade == 'green' or upgrade == 'g':
-                    player.green += -1
-                    player.blue += 1
-                    assert player.green > -1
-                elif upgrade == 'blue' or upgrade == 'b':
-                    player.blue += -1
-                    player.pink += 1
-                    assert player.blue > -1
-                else:
+        acceptable = []
+        while True:
+            try:
+                print('Upgrade options:')
+                if player.yellow > 0:
+                    acceptable.append('yellow')
+                    acceptable.append('y')
+                    print('Yellow or y')
+                if player.green > 0:
+                    acceptable.append('green')
+                    acceptable.append('g')
+                    print('Green or g')
+                if player.blue > 0:
+                    acceptable.append('blue')
+                    acceptable.append('b')
+                    print('Blue or b')
+
+                try:
+                    upgrade = input().lower()
+                    while upgrade not in acceptable:
+                        upgrade = input(
+                            'ERROR: Please enter a valid crystal option.\n').lower()
+                        continue
+
+                    if upgrade in acceptable:
+                        if player.yellow > 0:
+                            if upgrade == 'yellow' or upgrade == 'y':
+                                player.yellow += -1
+                                player.green += 1
+                                assert player.yellow > -1
+
+                        if player.green > 0:
+                            if upgrade == 'green' or upgrade == 'g':
+                                player.green += -1
+                                player.blue += 1
+                                assert player.green > -1
+
+                        if player.blue > 0:
+                            if upgrade == 'blue' or upgrade == 'b':
+                                player.blue += -1
+                                player.pink += 1
+                                assert player.blue > -1
+                except:
+                    print(
+                        'ERROR: Insufficient funds or not valid input.\nPlease enter a valid input.')
                     continue
-            break
-        except:
-            print(
-                'ERROR: Insufficient funds or not valid input.\nPlease enter a valid input.')
-            continue
-    return player
-
-
-def plus2yellow(player):
-    print('Plus 2 yellow')
-    player.yellow += 2
-    player.crystal_capacity += 2
+                break
+            except Exception as e:
+                print(str(e))
+                return False
     return player
 
 
@@ -54,7 +74,7 @@ def upgrade_2(player):
     return player
 
 
-def upgrade3(player):
+def upgrade_3(player):
     print('Three crystal upgrades.')
     print('Select first crystal to upgrade.')
     upgrade(player)
@@ -65,7 +85,13 @@ def upgrade3(player):
     return player
 
 
+#! The actions dictionary has the keys that will be in a list.
+# The user will use an action card that references this list.
+# The action card will then take the numbers in the list with the index of
+# yellow, green, blue, and pink.
 actions_dict = {
+    'upgrade2': upgrade_2,
+    'plus2yellow': [2, 0, 0, 0],
     'minus2yellow_plus2green': [-2, 2, 0, 0],
     'minus2yellow_plus1blue': [-2, 0, 1, 0],
     'minus3yellow_plus1pink': [-3, 0, 0, 1],
@@ -108,5 +134,5 @@ actions_dict = {
     'plus1blue1yellow': [1, 0, 1, 0],
     'plus1pink': [0, 0, 0, 1],
     'plus1green2yellow': [2, 1, 0, 0],
-    'upgrade3': upgrade3
+    'upgrade3': upgrade_3
 }

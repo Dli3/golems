@@ -1,6 +1,5 @@
 from .golems import golems_cards
 import random
-from .action_cards import plus2yellow, upgrade_2
 
 
 class Player():
@@ -13,7 +12,7 @@ class Player():
         self.green = 0
         self.blue = 0
         self.pink = 0
-        self.hand = [plus2yellow, upgrade_2]
+        self.hand = ['upgrade2', 'plus2yellow']
         self.discard_pile = []
 
     def update_yellow(self, yellow):

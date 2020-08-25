@@ -80,40 +80,6 @@ def starting_hand(players_list):
     return players_list
 
 
-def create_golems_board(golems_list):
-    '''
-    Creates the golem board with 5 random golems from the golems list.
-    The 5 randomly selected golems are then removed from the golems list.
-    Returns the golem board.
-
-    Args:
-        golems_list: The list we're using to generate our golem board.
-    '''
-    golems_board = []
-    for _ in range(5):
-        random_golem = random.choice(golems_list)
-        golems_board.append(random_golem)
-        golems_list.remove(random_golem)
-    return golems_board
-
-
-def create_action_board(action_cards_list):
-    '''
-    Creates the action cards board with 6 randomly selected action cards from the 
-    action cards list.
-    Returns the action cards board.
-
-    Args:
-        action_cards_list: The list of action cards we're randomly selecting from.
-    '''
-    action_board = []
-    for _ in range(6):
-        random_action = (random.choice(action_cards_list))
-        action_board.append(random_action)
-        action_cards_list.remove(random_action)
-    return action_board
-
-
 #! Taking a turn actions
 # There are 4 actions available to the player.
 # 1. Play: play a card from their hand.
@@ -134,11 +100,6 @@ def check_max_golems(players_list):
 
 
 # Rest: Take all previously played cards back to their hand.
-# def rest(discard_pile, player_hand):
-#     for card in discard_pile:
-#         player_hand.append(card)
-#     discard_pile.clear()
-#     return player_hand
 def rest(player):
     for card in player.check_discard_pile():
         player.hand.append(card)
@@ -146,9 +107,8 @@ def rest(player):
     player.discard_pile.clear()
     return player
 
+
 # Play: play a card from their hand.
-
-
 def play_action(player, actions_dict):
     '''
     Allows the player to play an action card from their hand. 
@@ -182,6 +142,8 @@ def play_action(player, actions_dict):
 def action_card(player, action_key):
     if 'upgrade3' in str(action_key):
         actions_dict['upgrade3'](player)
+    elif 'upgrade2' in str(action_key):
+        actions_dict['upgrade2'](player)
     else:
         player.update_yellow(actions_dict[action_key][0])
         player.update_green(actions_dict[action_key][1])

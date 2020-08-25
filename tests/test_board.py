@@ -48,3 +48,19 @@ class TestBoard():
         board = create_board
         player = create_player
         board.board_state()
+
+    def test_create_golems_board(self, create_board):
+        '''
+        Verifying the create_golems_board method under the Board class.
+        '''
+        board = create_board
+        golems_board = board.create_golems_board()
+        assert len(golems_board) == 5
+
+    def test_create_action_board(self, create_board):
+        '''
+        Verifying the create_action_board method under the Board class.
+        '''
+        board = create_board
+        golems_board = board.create_action_board()
+        assert len(golems_board) == 6

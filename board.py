@@ -7,9 +7,9 @@ import random
 class Board():
     def __init__(self, **players_list):
         self.golems_list = [golem for golem in golems_cards]
-        self.actions_list = [card for card in actions_dict]
+        self.actions_list = [card for card in actions_dict][2:]
 
-        self.actions_board = create_action_board(self.actions_list)
+        self.actions_board = self.create_action_board()
         self.actions_board_crystals = [
             {'position': 'index_0', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
             {'position': 'index_1', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
@@ -17,8 +17,34 @@ class Board():
             {'position': 'index_3', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
             {'position': 'index_4', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0},
             {'position': 'index_5', 'yellow': 0, 'green': 0, 'blue': 0, 'pink': 0}]
-        self.golems_board = create_golems_board(self.golems_list)
+        self.golems_board = self.create_golems_board()
         self.players_list = players_list
+
+    def create_golems_board(self):
+        '''
+        Creates the golem board with 5 random golems from the golems list.
+        The 5 randomly selected golems are then removed from the golems list.
+        Returns the golem board.
+        '''
+        golems_board = []
+        for _ in range(5):
+            random_golem = random.choice(self.golems_list)
+            golems_board.append(random_golem)
+            self.golems_list.remove(random_golem)
+        return golems_board
+
+    def create_action_board(self):
+        '''
+        Creates the action cards board with 6 randomly selected action cards from the 
+        action cards list.
+        Returns the action cards board.
+        '''
+        action_board = []
+        for _ in range(6):
+            random_action = (random.choice(self.actions_list))
+            action_board.append(random_action)
+            self.actions_list.remove(random_action)
+        return action_board
 
     def check_golem_board(self):
         '''
