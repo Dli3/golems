@@ -121,14 +121,17 @@ def play_action(player, actions_dict):
     if len(player.hand) > 0:
         card_index = None
         while card_index != int:
-            try:
-                card_index = int(input(
-                    f'Which action card would you like to play? Please enter the index between 0 and {len(player.hand )-1}.\n'))
+            while card_index not in range(len(player.hand)):
+                try:
+                    card_index = int(input(
+                        f"\nPlease select an option between 0 and {len(player.hand )-1}. Which action card would you like to play?\nPlayer's choice: "))
+                except ValueError:
+                    print(
+                        'ERROR: Please enter a valid input between 0 and {len(player.hand )-1}.\n')
+                    continue
+            else:
                 break
-            except ValueError:
-                print(
-                    'ERROR: Please enter a valid input between 0 and {len(player.hand )-1}.\n')
-        # player.hand[card_index](player)
+
         card = player.hand[card_index]
         print(card)
         action_card(player, card)
@@ -140,6 +143,10 @@ def play_action(player, actions_dict):
 
 
 def action_card(player, action_key):
+    '''
+    This function takes the action key and performs the crytal associated crystal adjustments 
+    with the values in the actions_dict. 
+    '''
     if 'upgrade3' in str(action_key):
         actions_dict['upgrade3'](player)
     elif 'upgrade2' in str(action_key):
@@ -149,9 +156,8 @@ def action_card(player, action_key):
         player.update_green(actions_dict[action_key][1])
         player.update_blue(actions_dict[action_key][2])
         player.update_pink(actions_dict[action_key][3])
-        crystals = actions_dict[action_key][0] + actions_dict[action_key][1] + \
-            actions_dict[action_key][2] + actions_dict[action_key][3]
-        player.update_crystal_capacity(crystals)
+
+    print(f'Successfully played action card {action_key}.')
     return player
 
 

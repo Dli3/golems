@@ -43,7 +43,18 @@ class TestGameplay():
         max = check_max_golems(players_list)
         assert max == 5
 
+    # @mark.skip
+    def test_play_action(self, create_player):
+        '''
+        Testing the play_action function. 
+        Verifying with plus2yellow that is in the player's starting hand.
+        '''
+        player = create_player
+        player.check_total_crystals()
+        play_action(player, actions_dict)  # Selecting index 1 for plus2yellow.
+        assert player.yellow == 2
+        assert player.crystal_capacity == 2
+        player.check_total_crystals()
+
     def test_rest(self, create_player):
         player = create_player
-        print(player.hand)
-        rest(player)

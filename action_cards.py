@@ -13,10 +13,11 @@ def upgrade(player):
     if player.yellow or player.green or player.blue or player.pink > 0:
 
         print(f"{player.name}'s hand: {player.yellow} yellow, {player.green} green, {player.blue} blue, and {player.pink} pink.")
-        acceptable = []
+        acceptable = ['pass']
         while True:
             try:
                 print('Upgrade options:')
+                print('"pass" to skip upgrade.')
                 if player.yellow > 0:
                     acceptable.append('yellow')
                     acceptable.append('y')
@@ -55,33 +56,49 @@ def upgrade(player):
                                 player.blue += -1
                                 player.pink += 1
                                 assert player.blue > -1
+                        if upgrade == 'pass':
+                            print('Player decided not to upgrade.')
+                            break
                 except:
                     print(
-                        'ERROR: Insufficient funds or not valid input.\nPlease enter a valid input.')
+                        'ERROR: Invalid input.\nPlease enter a valid input.')
                     continue
                 break
             except Exception as e:
                 print(str(e))
                 return False
+    else:
+        print('ERROR: Insufficient funds.')
+        return False
     return player
 
 
 def upgrade_2(player):
-    print('Select first crystal to upgrade.')
-    upgrade(player)
-    print("Select second crystal to upgrade.")
-    upgrade(player)
+    if player.yellow or player.green or player.blue or player.pink > 0:
+        print('CRYSTAL UPGRADES: 2')
+        print('Please select a crystal to upgrade.')
+        upgrade(player)
+        print('CRYSTAL UPGRADES: 1')
+        print('Please select a second crystal to upgrade.')
+        upgrade(player)
+    else:
+        print('ERROR: No crystals to upgrade.')
     return player
 
 
 def upgrade_3(player):
-    print('Three crystal upgrades.')
-    print('Select first crystal to upgrade.')
-    upgrade(player)
-    print("Select second crystal to upgrade.")
-    upgrade(player)
-    print("Select third crystal to upgrade.")
-    upgrade(player)
+    if player.yellow or player.green or player.blue or player.pink > 0:
+        print('CRYSTAL UPGRADES: 3')
+        print('Please select a crystal to upgrade.')
+        upgrade(player)
+        print('CRYSTAL UPGRADES: 2')
+        print('Please select a second crystal to upgrade.')
+        upgrade(player)
+        print('CRYSTAL UPGRADES: 1')
+        print('Please select a third crystal to upgrade.')
+        upgrade(player)
+    else:
+        print('ERROR: No crystals to upgrade.')
     return player
 
 

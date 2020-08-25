@@ -81,10 +81,13 @@ class Player():
                     print(
                         'ERROR: Invalid input. Please enter the following valid options:\nyellow or y\ngreen or g\nblue or b\npink or p')
             except:
+                print(
+                    f"Player's crystal count is below 10.\n{self.name}'s crystal count: {self.crystal_capacity}'")
                 break
 
     def check_total_crystals(self):
         check_total_crystals = self.yellow + self.green + self.blue + self.pink
+        print(f'{self.name} crystal count: {check_total_crystals}')
         return check_total_crystals
 
     def pay_in_crystals(self):
@@ -148,7 +151,7 @@ class Player():
                 break
         return payment
 
-    def crystal_count(self):
+    def crystal_capacity_counter(self):
         print(f"\n{self.name}'s crystals:\nPlayer's Crystal Capacity: {self.crystal_capacity}\n{self.yellow} Yellow crystals\n{self.green} Green crystals\n{self.blue} Blue crystals\n{self.pink} Pink crystals\n")
         return self.crystal_capacity
 

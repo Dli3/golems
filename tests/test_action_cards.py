@@ -15,11 +15,10 @@ class Test_Actions():
         assert player.green == 0
         assert player.blue == 0
         assert player.pink == 0
-        current_total = player.yellow + player.green + player.blue + player.pink
 
+        current_total = player.yellow + player.green + player.blue + player.pink
         player.update_yellow(1)
         upgrade(player)
-
         new_total = player.yellow + player.green + player.blue + player.pink
 
         assert current_total != new_total
