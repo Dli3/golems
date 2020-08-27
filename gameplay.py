@@ -109,13 +109,12 @@ def rest(player):
 
 
 # Play: play a card from their hand.
-def play_action(player, actions_dict):
+def play_action(player):
     '''
     Allows the player to play an action card from their hand. 
 
     Args:
         player: The player that's performing the action.
-        actions_dict: The actions dictionary that the action cards reference. 
     '''
     print(f"\n{player.name}'s hand: {player.hand}")
     if len(player.hand) > 0:
@@ -147,15 +146,50 @@ def action_card(player, action_key):
     This function takes the action key and performs the crytal associated crystal adjustments 
     with the values in the actions_dict. 
     '''
+    p_yellow = player.yellow
+    p_green = player.green
+    p_blue = player.blue
+    p_pink = player.pink
+
     if 'upgrade3' in str(action_key):
         actions_dict['upgrade3'](player)
     elif 'upgrade2' in str(action_key):
         actions_dict['upgrade2'](player)
     else:
-        player.update_yellow(actions_dict[action_key][0])
-        player.update_green(actions_dict[action_key][1])
-        player.update_blue(actions_dict[action_key][2])
-        player.update_pink(actions_dict[action_key][3])
+        yellow = actions_dict[action_key][0] if p_yellow + \
+            actions_dict[action_key][0] > -1 else False
+
+        green = actions_dict[action_key][1] if p_green + \
+            actions_dict[action_key][1] > -1 else False
+
+        blue = actions_dict[action_key][2] if p_blue + \
+            actions_dict[action_key][2] > -1 else False
+
+        pink = actions_dict[action_key][3] if p_pink + \
+            actions_dict[action_key][3] > -1 else False
+
+        print(yellow, green, blue, pink)
+
+        if yellow and green and blue and pink != False:
+            player.update_yellow(actions_dict[action_key][0])
+            player.update_green(actions_dict[action_key][1])
+            player.update_blue(actions_dict[action_key][2])
+            player.update_pink(actions_dict[action_key][3])
+            print(f'Successfully played {action_key}')
+        else:
+            if yellow != actions_dict[action_key][0]:
+                print(
+                    f'ERROR: Insufficient yellow crystals. Missing {p_yellow + actions_dict[action_key][0]} crystals.')
+            if green != actions_dict[action_key][1]:
+                print(
+                    f'ERROR: Insufficient green crystals. Missing {p_green + actions_dict[action_key][1]} crystals.')
+            if blue != actions_dict[action_key][2]:
+                print(
+                    f'ERROR: Insufficient blue crystals. Missing {p_blue + actions_dict[action_key][2]} crystals.')
+            if pink != actions_dict[action_key][3]:
+                print(
+                    f'ERROR: Insufficient pink crystals. Missing {p_pink + actions_dict[action_key][3]} crystals.')
+            return False
 
     print(f'Successfully played action card {action_key}.')
     return player

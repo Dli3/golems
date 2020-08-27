@@ -18,30 +18,38 @@ class Player():
     def update_yellow(self, yellow):
         self.yellow += yellow
         self.crystal_capacity += yellow
+        return self.yellow
 
     def update_green(self, green):
         self.green += green
         self.crystal_capacity += green
+        return self.green
 
     def update_blue(self, blue):
         self.blue += blue
         self.crystal_capacity += blue
+        return self.blue
 
     def update_pink(self, pink):
         self.pink += pink
         self.crystal_capacity += pink
+        return self.pink
 
     def update_golems(self):
         self.golems += 1
+        return self.golems
 
     def update_points(self, points):
         self.points += points
+        return self.points
 
     def update_hand(self, card):
         self.hand.append(card)
+        return self.hand
 
     def update_crystal_capacity(self, crystals):
         self.crystal_capacity += crystals
+        return self.crystal_capacity
 
     def check_crystal_capacity(self):
         while self.crystal_capacity > 10:
@@ -152,7 +160,12 @@ class Player():
         return payment
 
     def crystal_capacity_counter(self):
-        print(f"\n{self.name}'s crystals:\nPlayer's Crystal Capacity: {self.crystal_capacity}\n{self.yellow} Yellow crystals\n{self.green} Green crystals\n{self.blue} Blue crystals\n{self.pink} Pink crystals\n")
+        print(f"\n{self.name}'s crystals:")
+        print(f"Player's Crystal Capacity: {self.crystal_capacity}")
+        print(f"{self.yellow} Yellow crystals")
+        print(f"{self.green} Green crystals")
+        print(f"{self.blue} Blue crystals")
+        print(f"{self.pink} Pink crystals")
         return self.crystal_capacity
 
     def check_discard_pile(self):

@@ -11,7 +11,6 @@ These two cards will be included in the player class.
 
 def upgrade(player):
     if player.yellow or player.green or player.blue or player.pink > 0:
-
         print(f"{player.name}'s hand: {player.yellow} yellow, {player.green} green, {player.blue} blue, and {player.pink} pink.")
         acceptable = ['pass']
         while True:
@@ -130,11 +129,11 @@ actions_dict = {
     'minus1blue_plus2green': [0, 2, -1, 0],
     'minus1blue_plus1green4yellow': [4, 1, -1, 0],
     'minus1blue_plus2green1yellow': [1, 2, -1, 0],
-    'minus2blue_plus2pink': [0, 0, -2, -2],
+    'minus2blue_plus2pink': [0, 0, -2, 2],
     'minus2blue_plus1pink2green': [0, 2, -2, 1],
     'minus2blue_plus3green2yellow': [2, 3, -2, 0],
     'minus2blue_plus1pink1green2yellow': [2, 1, -2, 1],
-    'minus3blue_plus3pink': [0, 0, -3, -3],
+    'minus3blue_plus3pink': [0, 0, -3, 3],
     'minus1blue2yellow_plus2pink': [-2, 0, -1, 2],
     'minus1pink_plus2blue': [0, 0, 2, -1],
     'minus1pink_plus3green': [0, 3, 0, -1],

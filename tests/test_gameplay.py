@@ -43,7 +43,7 @@ class TestGameplay():
         max = check_max_golems(players_list)
         assert max == 5
 
-    # @mark.skip
+    @mark.skip
     def test_play_action(self, create_player):
         '''
         Testing the play_action function. 
@@ -56,5 +56,30 @@ class TestGameplay():
         assert player.crystal_capacity == 2
         player.check_total_crystals()
 
+    @mark.skip
     def test_rest(self, create_player):
+        '''
+        Testing the rest function that should return all cards in the discard pile to the player's hand.
+        Using the play_action function to move the 2 starter cards
+        from the player's hand into the player's graveyard.
+        '''
         player = create_player
+        assert len(player.hand) == 2
+        assert len(player.discard_pile) == 0
+
+        play_action(player)
+        play_action(player)
+
+        assert len(player.hand) == 0
+        assert len(player.discard_pile) == 0
+
+        rest(player)
+        assert len(player.hand) == 2
+        assert len(player.discard_pile) == 0
+
+    def test_action_card(self, create_player, create_board):
+        player = create_player
+        assert player.crystal_capacity_counter() == 0
+
+        action_card(player, 'minus2yellow_plus2green')
+        player.crystal_capacity_counter()
