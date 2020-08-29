@@ -196,7 +196,7 @@ golems_cards = {'golem_1': {'points': 6,
                 'golem_22': {'points': 12,
                              'yellow': 0,
                              'green': 0,
-                             'blue': 12,
+                             'blue': 4,
                              'pink': 0,
                              'copper_coins': 0,
                              'silver_coins': 0

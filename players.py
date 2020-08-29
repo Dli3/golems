@@ -179,3 +179,7 @@ class Player():
     def check_golems(self):
         print(f"\n{self.name}'s captured golems: {self.golems}'")
         return self.golems
+
+    def crystals_list(self):
+        crystals_list = [self.yellow, self.green, self.blue, self.pink]
+        return crystals_list

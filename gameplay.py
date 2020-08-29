@@ -168,14 +168,13 @@ def action_card(player, action_key):
         pink = actions_dict[action_key][3] if p_pink + \
             actions_dict[action_key][3] > -1 else False
 
-        print(yellow, green, blue, pink)
-
-        if yellow and green and blue and pink != False:
-            player.update_yellow(actions_dict[action_key][0])
-            player.update_green(actions_dict[action_key][1])
-            player.update_blue(actions_dict[action_key][2])
-            player.update_pink(actions_dict[action_key][3])
-            print(f'Successfully played {action_key}')
+        if crystal_validation(
+                actions_dict[action_key], player) != False:
+            player.update_yellow(yellow)
+            player.update_green(green)
+            player.update_blue(blue)
+            player.update_pink(pink)
+            print(f'Successfully played the action card {action_key}.')
         else:
             if yellow != actions_dict[action_key][0]:
                 print(
@@ -189,13 +188,12 @@ def action_card(player, action_key):
             if pink != actions_dict[action_key][3]:
                 print(
                     f'ERROR: Insufficient pink crystals. Missing {p_pink + actions_dict[action_key][3]} crystals.')
+            print(f'Unable to play action card {action_key}.')
             return False
-
-    print(f'Successfully played action card {action_key}.')
     return player
 
 
-def validate_player_crystals(actions_crystal, player):
+def crystal_validation(crystal_reqs, player):
     '''
     This function verifies that an action card doesn't result in a negative crystal count for 
     the player's yellow, green, blue, and pink.
@@ -205,12 +203,13 @@ def validate_player_crystals(actions_crystal, player):
                           The list returned will be in the following order: [yellow, green, blue, pink]
         player: The player whose attempting to play the action card.
     '''
-    player_arr = [player.yellow, player.green, player.blue, player.pink]
 
-    zip_object = zip(player_arr, actions_crystal)
+    zip_object = zip(player.crystals_list(), crystal_reqs)
+
     results = []
     for player_crystal, action_crystal in zip_object:
-        results.append(player_crystal - action_crystal)
+        results.append(player_crystal + action_crystal)
+
     validated = True
     for result in results:
         if result < 0:
@@ -231,9 +230,8 @@ def capture_golem(golem_board, player):
         golem: The golem card they're trying to capture.
         player: The player trying to capture the golem.
     '''
-
     golem_index = None
-    while golem_index != int:
+    while golem_index != int and golem_index not in range(0, 5):
         try:
             golem_index = int(input(
                 f'Which action card would you like to claim? Please enter the index between 0 and {len(golem_board)-1}.\n'))
@@ -241,33 +239,38 @@ def capture_golem(golem_board, player):
                 continue
         except ValueError:
             print(
-                f'ERROR: Please enter valid input between 0-{len(golems_board)}.')
+                f'ERROR: Please enter valid input between 0-{len(golem_board)}.')
             continue
         break
 
     golem = golem_board[golem_index]
     print(f'\nAttempting to capture golem {golem}.')
+    print('......')
 
     yellow = player.yellow - golems_cards[golem]['yellow'] if player.yellow - \
-        golems_cards[golem]['yellow'] > -1 else False
-    green = player.green - golems_cards[golem]['green'] if player.green - \
-        golems_cards[golem]['green'] > -1 else False
-    blue = player.blue - golems_cards[golem]['blue'] if player.blue - \
-        golems_cards[golem]['blue'] > -1 else False
-    pink = player.pink - golems_cards[golem]['pink'] if player.pink - \
-        golems_cards[golem]['pink'] > -1 else False
+        golems_cards[golem]['yellow'] >= 0 else False
 
-    if yellow != False and green != False and blue != False and pink != False:
+    green = player.green - golems_cards[golem]['green'] if player.green - \
+        golems_cards[golem]['green'] >= 0 else False
+
+    blue = player.blue - golems_cards[golem]['blue'] if player.blue - \
+        golems_cards[golem]['blue'] >= 0 else False
+
+    pink = player.pink - golems_cards[golem]['pink'] if player.pink - \
+        golems_cards[golem]['pink'] >= 0 else False
+
+    print(yellow, green, blue, pink)
+
+    if yellow and green and blue and pink != False:
         player.update_yellow(yellow)
         player.update_green(green)
         player.update_blue(blue)
         player.update_pink(pink)
         player.update_golems()
-
         points = golems_cards[golem]['points']
         player.update_points(points)
         print(
-            f'Congratulations! Player {player.name} captured {points} points.')
+            f'Congratulations! Player {player.name} captured {golem} that is worth {points} points.')
         golem_board.remove(golem)
     else:
         print('Sorry, you do not meet the golem requirements. \nMissing requirements:')
@@ -283,6 +286,7 @@ def capture_golem(golem_board, player):
         if pink == False:
             print(
                 f'{str(player.pink - golems_cards[golem]["pink"])} Pink Crystals')
+        return False
     return player, golem_board
 
 

@@ -78,8 +78,63 @@ class TestGameplay():
         assert len(player.discard_pile) == 0
 
     def test_action_card(self, create_player, create_board):
+        '''
+        Testing the action_card function. 
+        Shouldn't allow the player to play the card if there's insufficient crystals.
+        '''
+        #! Creating the player which starts off with 0 crystals.
         player = create_player
         assert player.crystal_capacity_counter() == 0
 
+        #! Expected result: Unable to play card.
         action_card(player, 'minus2yellow_plus2green')
-        player.crystal_capacity_counter()
+        assert player.crystal_capacity_counter() == 0
+
+        #! Expected result: Successfully added 2 yellow crystals but unable to play the 2nd card that exceeds funds.
+        action_card(player, 'plus2yellow')
+        assert player.crystal_capacity_counter() == 2
+        action_card(player, 'minus5yellow_plus2pink')
+        assert player.crystal_capacity_counter() == 2
+
+        #! Expected result: Successfully adds 3 yellow crystal and is able to play 2nd card now that there's sufficient funds.
+        action_card(player, 'plus3yellow')
+        assert player.crystal_capacity_counter() == 5
+        action_card(player, 'minus5yellow_plus2pink')
+        assert player.crystal_capacity_counter() == 2
+
+    def test_crystal_validation(self, create_player):
+        '''
+        Testing the crystal_validation function.
+        Returns True if none of the results returns negative. 
+        Returns False if any of the results return negative.
+        '''
+        player = create_player
+
+        assert crystal_validation(
+            actions_dict['plus3yellow'], player) == True
+        assert crystal_validation(
+            actions_dict['minus3green_plus2pink'], player) == False
+        assert crystal_validation(
+            actions_dict['minus1green1yellow_plus1pink'], player) == False
+
+    def test_capture_golem(self, create_player, create_board):
+        '''
+        Verifying the capture_golems function.
+        '''
+        player = create_player
+        board = create_board
+        golems_board = board.create_golems_board()
+        print(golems_board)
+
+        #! Attempting to capture a golem without sufficient crystal funds.
+        assert player.golems == 0
+        capture_golem(golems_board, player)
+        assert player.golems == 0
+
+        player.update_yellow(5)
+        player.update_green(5)
+        player.update_blue(5)
+        player.update_pink(5)
+        capture_golem(golems_board, player)
+
+        assert player.golems == 1
