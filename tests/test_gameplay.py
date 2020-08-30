@@ -140,6 +140,7 @@ class TestGameplay():
 
         assert player.golems == 1
 
+    @mark.skip
     def test_pay_for_action_card(self, create_player, create_board):
         player = create_player
         board = create_board
@@ -150,8 +151,26 @@ class TestGameplay():
         pay_for_action_card(board, player)
         print(board.actions_board_crystals)
 
+    @mark.skip
     def test_claim_action_card(self, create_player, create_board):
         player = create_player
         board = create_board
+        assert len(player.hand) == 2
+        player.update_yellow(4)
+        player.update_green(2)
+        player.update_blue(1)
+        print(board.actions_board)
 
-        # print(board.actions_board)
+        claim_action_card(board, player)
+        print(player.hand)
+        print(board.actions_board)
+
+        assert len(player.hand) == 3
+        assert len(board.actions_board) == 5
+
+    def test_take_a_turn(self, create_player, create_board):
+        player = create_player
+        board = create_board
+
+        take_a_turn(board, player)
+        # take_a_turn(board, player)

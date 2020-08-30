@@ -95,14 +95,14 @@ class Player():
 
     def check_total_crystals(self):
         check_total_crystals = self.yellow + self.green + self.blue + self.pink
-        print(f'{self.name} crystal count: {check_total_crystals}')
+        print(f'\n{self.name} crystal count: {check_total_crystals}')
         return check_total_crystals
 
     def pay_in_crystals(self):
         total_crystals = self.check_total_crystals()
         if total_crystals > 0:
             while True:
-                print(f"Which crystal would you like to pay in?\nOptions:")
+                print(f"\nWhich crystal would you like to pay in?\nOptions:")
                 if self.yellow > 0:
                     print(f'{self.yellow} yellow (y)')
                 if self.green > 0:
@@ -114,9 +114,19 @@ class Player():
 
                 acceptable = ['yellow', 'y', 'green',
                               'g', 'blue', 'b', 'pink', 'p']
+                payment = input('Payment: ')
+                if payment not in acceptable:
+                    print("\nERROR: Please enter a valid crystal payment.")
+                    if self.yellow > 0:
+                        print(f'{self.yellow} yellow (y)')
+                    if self.green > 0:
+                        print(f'{self.green} green (g)')
+                    if self.blue > 0:
+                        print(f'{self.blue} blue (b)')
+                    if self.pink > 0:
+                        print(f'{self.pink} pink (p)')
+                    continue
                 try:
-                    payment = input().lower()
-                    assert payment in acceptable
                     if payment == 'yellow' or payment == 'y':
                         payment = 'yellow'
                         if self.yellow > 0:

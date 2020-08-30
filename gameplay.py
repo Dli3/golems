@@ -101,11 +101,14 @@ def check_max_golems(players_list):
 
 # Rest: Take all previously played cards back to their hand.
 def rest(player):
+    print('\nResting...')
     for card in player.check_discard_pile():
         player.hand.append(card)
         print(f"{card} returned to {player.name}'s hand.")
     player.discard_pile.clear()
-    return player
+    print(
+        f"\nSuccessfully returned all cards from discard pile to {player.name}'s' hand.")
+    return True
 
 
 # Play: play a card from their hand.
@@ -116,6 +119,7 @@ def play_action(player):
     Args:
         player: The player that's performing the action.
     '''
+    print('Attempting to play an action card...')
     print(f"\n{player.name}'s hand: {player.hand}")
     if len(player.hand) > 0:
         card_index = None
@@ -136,9 +140,12 @@ def play_action(player):
         action_card(player, card)
         player.discard_pile.append(player.hand[card_index])
         del player.hand[card_index]
+        print(f'{player.name} Successfully played an action card.')
     else:
         print(f"ERROR: Insufficent action cards in {player.name}'s hand.")
-    return player
+        return False
+    print(f'{player.name} has successfully played an action card.')
+    return True
 
 
 def action_card(player, action_key):
@@ -218,7 +225,7 @@ def crystal_validation(crystal_reqs, player):
 
 
 # Claim: Acquire a golem.
-def capture_golem(golem_board, player):
+def capture_golem(board, player):
     '''
     This function verifies the crystals in the player's crystal cart meets the 
     requirements of the golem they're attempting to capture.
@@ -230,6 +237,8 @@ def capture_golem(golem_board, player):
         golem: The golem card they're trying to capture.
         player: The player trying to capture the golem.
     '''
+    print('\nAttempting to capture golem...')
+    golem_board = board.golems_board
     golem_index = None
     while golem_index != int and golem_index not in range(0, 5):
         try:
@@ -287,55 +296,11 @@ def capture_golem(golem_board, player):
             print(
                 f'{str(player.pink - golems_cards[golem]["pink"])} Pink Crystals')
         return False
-    return player, golem_board
+    print(f'{player.name} has successfully captured a golem!')
+    return True
 
 
-# Acquire Action Card: Acquire a action card(merchant card).
-def claim_action_card(board, player):
-    '''
-    This turn function allows a player to claim an action card 
-    at the specified index on the board.actions_board list.
-    The requirement to claim a card at a certain index is to drop a crystal for every index passed.
-    We will check if the player has sufficient crystals to claim the card at the specified index.
-    '''
-    # Asking the player which action card they would like to claim from the actions board.
-    card_index = None
-    while card_index != int:
-        try:
-            card_index = int(input(
-                f'Which action card would you like to claim? Please enter the index between 0 and {len(board.actions_board)-1}.\n'))
-            if card_index not in range(0, 6):
-                continue
-        except ValueError:
-            print(
-                f'ERROR: Please enter valid input between 0-{len(board.actions_board)}.')
-            continue
-        break
-
-    # If pay_for_action_card returns True, append the action card to player's hand.
-    if pay_for_action_card(board, player) == True:
-        player.update_hand(board.actions_board[card_index])
-        # If there's crystals on the card index, the player also gains the crystals.
-        if board.actions_board[card_index]['yellow'] > 0:
-            player.update_yellow(board.actions_board[card_index]['yellow'])
-            board.actions_board[card_index]['yellow'] = 0
-
-        if board.actions_board[card_index]['green'] > 0:
-            player.update_green(board.actions_board[card_index]['green'])
-            board.actions_board[card_index]['green'] = 0
-
-        if board.actions_board[card_index]['blue'] > 0:
-            player.update_blue(board.actions_board[card_index]['blue'])
-            board.actions_board[card_index]['blue'] = 0
-
-        if board.actions_board[card_index]['pink'] > 0:
-            player.update_pink(board.actions_board[card_index]['pink'])
-            board.actions_board[card_index]['pink'] = 0
-
-        del board.actions_board[card_index]
-
-
-def pay_for_action_card(board, player):
+def pay_for_action_card(board, player, card_index):
     '''
     This function verifies the user has enough crystals to deposit in the indexes preceding the 
     action card they would like to claim. 
@@ -348,30 +313,78 @@ def pay_for_action_card(board, player):
     crystal_count = player.check_total_crystals()
     print('Available number of crystals to spend: ' + str(crystal_count))
 
-    while True:
-        card_index = None
-        while card_index != int and card_index not in range(0, 6):
-            try:
-                card_index = int(
-                    input('Which position(0-5) is the action card you would like to claim? \n'))
-            except ValueError:
-                print('Sorry, please enter a valid number input between 0-5.')
-                continue
-        else:
-            break
-
     claimable = True
-    if crystal_count >= card_index - 1:
-        for _ in range(card_index-1):
+    if crystal_count >= card_index:
+        payments_left = card_index - 1
+        for _ in range(card_index):
+            print(f'\nCrystal payments left: {payments_left}')
+
             crystal_paid = player.pay_in_crystals()
             board.actions_board_crystals[_][crystal_paid] += 1
+            payments_left -= 1
         print(
-            f'Successfully paid the crystal requirements for action card capture at index {card_index}.\n')
+            f'\nSuccessfully paid the crystal requirements for action card capture at index {card_index}.\n')
     else:
         print(
-            f'ERROR: Insufficient crystal funds: {player.check_total_crystals()}\n')
+            f'\nERROR: Insufficient crystal funds: {player.check_total_crystals()}\n')
         claimable = False
     return claimable
+
+
+# Acquire Action Card: Acquire a action card(merchant card).
+def claim_action_card(board, player):
+    '''
+    This turn function allows a player to claim an action card 
+    at the specified index on the board.actions_board list.
+    The requirement to claim a card at a certain index is to drop a crystal for every index passed.
+    We will check if the player has sufficient crystals to claim the card at the specified index.
+    '''
+    # Asking the player which action card they would like to claim from the actions board.
+    print('\nAttempting to claim an action card...')
+    card_index = None
+    print('\nActions board: ' + str(board.actions_board))
+    while card_index != int and card_index not in range(0, 6):
+        try:
+            card_index = int(input(
+                f'\nWhich action card would you like to claim? Please enter the index between 0 and {len(board.actions_board)-1}.\n'))
+            if card_index not in range(0, 6):
+                continue
+        except ValueError:
+            print(
+                f'ERROR: Please enter valid input between 0-{len(board.actions_board -1)}.')
+            continue
+        break
+
+    # If pay_for_action_card returns True, append the action card to player's hand.
+    if pay_for_action_card(board, player, card_index) == True:
+        print("Tested")
+        player.update_hand(board.actions_board[card_index])
+        # If there's crystals on the card index, the player also gains the crystals.
+        if board.actions_board_crystals[card_index]['yellow'] > 0:
+            player.update_yellow(
+                board.actions_board_crystals[card_index]['yellow'])
+            board.actions_board[card_index]['yellow'] = 0
+
+        if board.actions_board_crystals[card_index]['green'] > 0:
+            player.update_green(
+                board.actions_board_crystals[card_index]['green'])
+            board.actions_board[card_index]['green'] = 0
+
+        if board.actions_board_crystals[card_index]['blue'] > 0:
+            player.update_blue(
+                board.actions_board_crystals[card_index]['blue'])
+            board.actions_board[card_index]['blue'] = 0
+
+        if board.actions_board_crystals[card_index]['pink'] > 0:
+            player.update_pink(
+                board.actions_board_crystals[card_index]['pink'])
+            board.actions_board[card_index]['pink'] = 0
+        # Removing the claimed action card from the action board.
+        del board.actions_board[card_index]
+    else:
+        return False
+    print(f'{player.name} has successfully claimed an action card!')
+    return True
 
 
 def take_a_turn(board, player):
@@ -386,17 +399,26 @@ def take_a_turn(board, player):
     acceptable = ['a', 'b', 'c', 'd']
     moves = 1
     while moves > 0:
+        print(f'\nMoves available: {moves}')
         choice = input(
-            'What action would you like to make for your turn?\nOptions:\nA = Play action card\nB = Acquire an action card from the action card board\nC = Rest\nD = Claim a golem\n').lower()
+            'What action would you like to make for your turn?\nOptions:\nA = Play action card\nB = Acquire an action card from the action card board\nC = Rest\nD = Claim a golem\nChoice: ').lower()
         if choice in acceptable:
             if choice == 'a':
-                play_action(player, actions_dict)
+                turn = play_action(player)
+                if turn == True:
+                    moves -= 1
             elif choice == 'b':
-                claim_action_card(board, player)
+                turn = claim_action_card(board, player)
+                if turn == True:
+                    moves -= 1
             elif choice == 'c':
-                rest(player)
+                turn = rest(player)
+                if turn == True:
+                    moves -= 1
             elif choice == 'd':
-                capture_golem(board, player)
+                turn = capture_golem(board, player)
+                if turn == True:
+                    moves -= 1
 
         else:
             print('ERROR: Invalid input. Please enter a valid input.')
