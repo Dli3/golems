@@ -104,13 +104,13 @@ class Player():
             while True:
                 print(f"Which crystal would you like to pay in?\nOptions:")
                 if self.yellow > 0:
-                    print(f'{self.yellow} yellow crystals')
+                    print(f'{self.yellow} yellow (y)')
                 if self.green > 0:
-                    print(f'{self.green} green crystals')
+                    print(f'{self.green} green (g)')
                 if self.blue > 0:
-                    print(f'{self.blue} blue crystals')
+                    print(f'{self.blue} blue (b)')
                 if self.pink > 0:
-                    print(f'{self.pink} pink crystals')
+                    print(f'{self.pink} pink (p)')
 
                 acceptable = ['yellow', 'y', 'green',
                               'g', 'blue', 'b', 'pink', 'p']
@@ -131,7 +131,6 @@ class Player():
                         if self.green > 0:
                             self.green -= 1
                             self.crystal_capacity -= 1
-
                         else:
                             print(
                                 'ERROR: Insufficient funds. Please select from the available crystal funds.')

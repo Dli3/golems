@@ -117,6 +117,7 @@ class TestGameplay():
         assert crystal_validation(
             actions_dict['minus1green1yellow_plus1pink'], player) == False
 
+    @mark.skip
     def test_capture_golem(self, create_player, create_board):
         '''
         Verifying the capture_golems function.
@@ -138,3 +139,19 @@ class TestGameplay():
         capture_golem(golems_board, player)
 
         assert player.golems == 1
+
+    def test_pay_for_action_card(self, create_player, create_board):
+        player = create_player
+        board = create_board
+        player.update_yellow(4)
+        player.update_green(2)
+        player.update_blue(1)
+        # print(board.actions_board)
+        pay_for_action_card(board, player)
+        print(board.actions_board_crystals)
+
+    def test_claim_action_card(self, create_player, create_board):
+        player = create_player
+        board = create_board
+
+        # print(board.actions_board)

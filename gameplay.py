@@ -248,20 +248,20 @@ def capture_golem(golem_board, player):
     print('......')
 
     yellow = player.yellow - golems_cards[golem]['yellow'] if player.yellow - \
-        golems_cards[golem]['yellow'] >= 0 else False
+        golems_cards[golem]['yellow'] > -1 else False
 
     green = player.green - golems_cards[golem]['green'] if player.green - \
-        golems_cards[golem]['green'] >= 0 else False
+        golems_cards[golem]['green'] > -1 else False
 
     blue = player.blue - golems_cards[golem]['blue'] if player.blue - \
-        golems_cards[golem]['blue'] >= 0 else False
+        golems_cards[golem]['blue'] > -1 else False
 
     pink = player.pink - golems_cards[golem]['pink'] if player.pink - \
-        golems_cards[golem]['pink'] >= 0 else False
+        golems_cards[golem]['pink'] > -1 else False
 
     print(yellow, green, blue, pink)
 
-    if yellow and green and blue and pink != False:
+    if crystal_validation([yellow, green, blue, pink], player) != False:
         player.update_yellow(yellow)
         player.update_green(green)
         player.update_blue(blue)
@@ -313,7 +313,7 @@ def claim_action_card(board, player):
         break
 
     # If pay_for_action_card returns True, append the action card to player's hand.
-    if pay_for_action_card(board, player, card_index) == True:
+    if pay_for_action_card(board, player) == True:
         player.update_hand(board.actions_board[card_index])
         # If there's crystals on the card index, the player also gains the crystals.
         if board.actions_board[card_index]['yellow'] > 0:
@@ -335,7 +335,7 @@ def claim_action_card(board, player):
         del board.actions_board[card_index]
 
 
-def pay_for_action_card(board, player, card_index):
+def pay_for_action_card(board, player):
     '''
     This function verifies the user has enough crystals to deposit in the indexes preceding the 
     action card they would like to claim. 
@@ -347,6 +347,18 @@ def pay_for_action_card(board, player, card_index):
     '''
     crystal_count = player.check_total_crystals()
     print('Available number of crystals to spend: ' + str(crystal_count))
+
+    while True:
+        card_index = None
+        while card_index != int and card_index not in range(0, 6):
+            try:
+                card_index = int(
+                    input('Which position(0-5) is the action card you would like to claim? \n'))
+            except ValueError:
+                print('Sorry, please enter a valid number input between 0-5.')
+                continue
+        else:
+            break
 
     claimable = True
     if crystal_count >= card_index - 1:
