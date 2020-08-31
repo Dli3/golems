@@ -239,11 +239,12 @@ def capture_golem(board, player):
     '''
     print('\nAttempting to capture golem...')
     golem_board = board.golems_board
+    print(golem_board)
     golem_index = None
     while golem_index != int and golem_index not in range(0, 5):
         try:
             golem_index = int(input(
-                f'Which action card would you like to claim? Please enter the index between 0 and {len(golem_board)-1}.\n'))
+                f'Which golem would you like to claim? Please enter the index between 0 and {len(golem_board)-1}.\n'))
             if golem_index not in range(0, 5):
                 continue
         except ValueError:
@@ -256,16 +257,16 @@ def capture_golem(board, player):
     print(f'\nAttempting to capture golem {golem}.')
     print('......')
 
-    yellow = player.yellow - golems_cards[golem]['yellow'] if player.yellow - \
+    yellow = golems_cards[golem]['yellow'] if player.yellow + \
         golems_cards[golem]['yellow'] > -1 else False
 
-    green = player.green - golems_cards[golem]['green'] if player.green - \
+    green = golems_cards[golem]['green'] if player.green + \
         golems_cards[golem]['green'] > -1 else False
 
-    blue = player.blue - golems_cards[golem]['blue'] if player.blue - \
+    blue = golems_cards[golem]['blue'] if player.blue + \
         golems_cards[golem]['blue'] > -1 else False
 
-    pink = player.pink - golems_cards[golem]['pink'] if player.pink - \
+    pink = golems_cards[golem]['pink'] if player.pink + \
         golems_cards[golem]['pink'] > -1 else False
 
     print(yellow, green, blue, pink)
@@ -285,16 +286,16 @@ def capture_golem(board, player):
         print('Sorry, you do not meet the golem requirements. \nMissing requirements:')
         if yellow == False:
             print(
-                f'{str(player.yellow - golems_cards[golem]["yellow"])} Yellow Crystals')
+                f'{str(player.yellow + golems_cards[golem]["yellow"])} Yellow Crystals')
         if green == False:
             print(
-                f'{str(player.green - golems_cards[golem]["green"])} Green Crystals')
+                f'{str(player.green + golems_cards[golem]["green"])} Green Crystals')
         if blue == False:
             print(
-                f'{str(player.blue - golems_cards[golem]["blue"])} Blue Crystals')
+                f'{str(player.blue + golems_cards[golem]["blue"])} Blue Crystals')
         if pink == False:
             print(
-                f'{str(player.pink - golems_cards[golem]["pink"])} Pink Crystals')
+                f'{str(player.pink + golems_cards[golem]["pink"])} Pink Crystals')
         return False
     print(f'{player.name} has successfully captured a golem!')
     return True
@@ -419,7 +420,6 @@ def take_a_turn(board, player):
                 turn = capture_golem(board, player)
                 if turn == True:
                     moves -= 1
-
         else:
             print('ERROR: Invalid input. Please enter a valid input.')
             continue

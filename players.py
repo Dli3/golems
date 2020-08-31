@@ -192,3 +192,15 @@ class Player():
     def crystals_list(self):
         crystals_list = [self.yellow, self.green, self.blue, self.pink]
         return crystals_list
+
+    def check_player_status(self):
+        print(f"\n{self.name}'s stats: ")
+        print(f"Player's Crystal Capacity: {self.crystal_capacity}")
+        print(f"{self.yellow} Yellow crystals")
+        print(f"{self.green} Green crystals")
+        print(f"{self.blue} Blue crystals")
+        print(f"{self.pink} Pink crystals")
+        print(f'Golem count: {self.golems}')
+        print(f'Points: {self.points}')
+        print(f'Hand: {self.hand}')
+        print(f'Discard pile: {self.discard_pile}')

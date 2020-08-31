@@ -142,6 +142,9 @@ class TestGameplay():
 
     @mark.skip
     def test_pay_for_action_card(self, create_player, create_board):
+        '''
+        Verifying the pay_for_action_card function.
+        '''
         player = create_player
         board = create_board
         player.update_yellow(4)
@@ -153,6 +156,9 @@ class TestGameplay():
 
     @mark.skip
     def test_claim_action_card(self, create_player, create_board):
+        '''
+        Verifying the claim_action_card function. 
+        '''
         player = create_player
         board = create_board
         assert len(player.hand) == 2
@@ -169,8 +175,18 @@ class TestGameplay():
         assert len(board.actions_board) == 5
 
     def test_take_a_turn(self, create_player, create_board):
+        '''
+        Verifying take_a_turn function.
+        '''
         player = create_player
         board = create_board
-
+        board.players_list = ['player1, player2']
+        board.check_golem_board()
+        player.update_yellow(4)
+        player.update_green(4)
+        player.update_blue(4)
+        player.update_pink(4)
+        player.check_player_status()
         take_a_turn(board, player)
-        # take_a_turn(board, player)
+        player.check_player_status()
+        board.board_state()

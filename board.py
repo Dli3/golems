@@ -55,6 +55,8 @@ class Board():
         Returns the golem board.
         '''
         if len(self.golems_board) < 5:
+            print(
+                'Golem board has less than 5 golems.\nAdded 1 golem to the golem board.')
             random_golem = random.choice(self.golems_list)
             self.golems_board.append(random_golem)
             self.golems_list.remove(random_golem)
@@ -88,7 +90,7 @@ class Board():
             - Golems and coins placed on them
             - Action cards and the crystals placed on them
         '''
-        print('\nBOARD STATE:')
+        print('\n===== BOARD STATE =====:')
         print(f'\nGolems Board:\nCount: {len(self.golems_board)}')
         for golem in self.golems_board:
             print(golem, golems_cards[golem])
