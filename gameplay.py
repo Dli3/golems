@@ -4,7 +4,7 @@ These functions are the gameplay actions.
 import random
 from .players import Player
 from .action_cards import actions_dict
-from .golems import golems_cards
+from .golem_cards import golems_cards
 
 #! Initializing the game.
 

@@ -1,7 +1,7 @@
 import pytest
 from pytest import mark
-from ..gameplay import *
-from ..golems import golems_cards
+from golems.gameplay import *
+# from .golem_cards import *
 
 
 @mark.gameplay

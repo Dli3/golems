@@ -1,4 +1,4 @@
-from .golems import golems_cards
+from .golem_cards import golems_cards
 import random
 
 

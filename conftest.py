@@ -1,7 +1,7 @@
 from pytest import fixture
-from .players import Player
-from .board import Board
-from .gameplay import *
+from golems.players import *
+from golems.board import *
+from golems.gameplay import *
 
 
 @fixture(autouse=True, scope='function')

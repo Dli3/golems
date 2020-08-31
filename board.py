@@ -1,5 +1,5 @@
 from .gameplay import*
-from .golems import*
+from .golem_cards import*
 from .action_cards import*
 import random
 

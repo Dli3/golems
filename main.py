@@ -1,34 +1,14 @@
 from action_cards import*
-from players import Player
-from golems import golems_cards
+from .players import *
+from golem_cards import *
 import random
 from board import Board
 from gameplay import*
 
 
-#! Creating the players playing the game.
-num_players = define_number_of_players()
-players_list = []
-for total_players in range(num_players):
-    name = input(f'\nWhat is your name player {total_players + 1}?\n')
-    players_list.append(Player(name))
+def main():
+    p_list = players_list()
 
-# starting_hand(players_list)
 
-# #! Game play
-# last_round_players = []
-
-# while check_max_golems(players_list) != 5:
-#     for player in players_list:
-#         if check_max_golems(players_list) != 5:
-#             player.golems += 1
-#             print(player.name)
-#             print(player.golems)
-
-# else:
-#     for player in players_list:
-#         if player.golems != 5:
-#             last_round_players.append(player)
-
-# for player in last_round_players:
-#     print(player.name)
+if __name__ == "__main__":
+    main()

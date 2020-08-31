@@ -1,6 +1,6 @@
 import pytest
 from pytest import mark
-from ..action_cards import *
+from golems.action_cards import *
 
 
 @mark.actions
