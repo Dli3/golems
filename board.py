@@ -1,6 +1,6 @@
-from .gameplay import*
-from .golem_cards import*
-from .action_cards import*
+from gameplay import*
+from golem_cards import*
+from action_cards import*
 import random
 
 

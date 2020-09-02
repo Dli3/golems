@@ -2,13 +2,12 @@
 These functions are the gameplay actions.
 '''
 import random
-from .players import Player
-from .action_cards import actions_dict
-from .golem_cards import golems_cards
+from players import Player
+from action_cards import actions_dict
+from golem_cards import golems_cards
+
 
 #! Initializing the game.
-
-
 def define_number_of_players():
     '''
     Asking the user how many players are going to be playing this game of golems.
@@ -140,11 +139,10 @@ def play_action(player):
         action_card(player, card)
         player.discard_pile.append(player.hand[card_index])
         del player.hand[card_index]
-        print(f'{player.name} Successfully played an action card.')
+        print(f"{player.name}'s {card} card was moved to the discard pile.")
     else:
         print(f"ERROR: Insufficent action cards in {player.name}'s hand.")
         return False
-    print(f'{player.name} has successfully played an action card.')
     return True
 
 
@@ -181,7 +179,7 @@ def action_card(player, action_key):
             player.update_green(green)
             player.update_blue(blue)
             player.update_pink(pink)
-            print(f'Successfully played the action card {action_key}.')
+            print(f'\nSuccessfully played the action card {action_key}.')
         else:
             if yellow != actions_dict[action_key][0]:
                 print(
@@ -271,7 +269,8 @@ def capture_golem(board, player):
 
     print(yellow, green, blue, pink)
 
-    if crystal_validation([yellow, green, blue, pink], player) != False:
+    # if crystal_validation([yellow, green, blue, pink], player) != False:
+    if yellow and green and blue and pink != False:
         player.update_yellow(yellow)
         player.update_green(green)
         player.update_blue(blue)
@@ -358,7 +357,6 @@ def claim_action_card(board, player):
 
     # If pay_for_action_card returns True, append the action card to player's hand.
     if pay_for_action_card(board, player, card_index) == True:
-        print("Tested")
         player.update_hand(board.actions_board[card_index])
         # If there's crystals on the card index, the player also gains the crystals.
         if board.actions_board_crystals[card_index]['yellow'] > 0:
@@ -399,28 +397,38 @@ def take_a_turn(board, player):
     '''
     acceptable = ['a', 'b', 'c', 'd']
     moves = 1
-    while moves > 0:
-        print(f'\nMoves available: {moves}')
-        choice = input(
-            'What action would you like to make for your turn?\nOptions:\nA = Play action card\nB = Acquire an action card from the action card board\nC = Rest\nD = Claim a golem\nChoice: ').lower()
-        if choice in acceptable:
-            if choice == 'a':
-                turn = play_action(player)
-                if turn == True:
-                    moves -= 1
-            elif choice == 'b':
-                turn = claim_action_card(board, player)
-                if turn == True:
-                    moves -= 1
-            elif choice == 'c':
-                turn = rest(player)
-                if turn == True:
-                    moves -= 1
-            elif choice == 'd':
-                turn = capture_golem(board, player)
-                if turn == True:
-                    moves -= 1
-        else:
-            print('ERROR: Invalid input. Please enter a valid input.')
-            continue
-        moves -= 1
+    while True:
+        while moves > 0:
+            print(f'\nMoves available: {moves}')
+            choice = input(
+                f'What action would you like to make for your turn {player.name}?\nOptions:\nA = Play action card\nB = Acquire an action card from the action card board\nC = Rest\nD = Claim a golem\nChoice: ').lower()
+            if choice in acceptable:
+                if choice == 'a':
+                    turn = play_action(player)
+                    if turn == True:
+                        moves -= 1
+                    else:
+                        continue
+                elif choice == 'b':
+                    turn = claim_action_card(board, player)
+                    if turn == True:
+                        moves -= 1
+                    else:
+                        continue
+                elif choice == 'c':
+                    turn = rest(player)
+                    if turn == True:
+                        moves -= 1
+                    else:
+                        continue
+                elif choice == 'd':
+                    turn = capture_golem(board, player)
+                    if turn == True:
+                        moves -= 1
+                    else:
+                        continue
+            else:
+                print('ERROR: Invalid input. Please enter a valid input.')
+                continue
+            moves -= 1
+        break
