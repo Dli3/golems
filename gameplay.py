@@ -256,32 +256,38 @@ def capture_golem(board, player):
     print('......')
 
     yellow = golems_cards[golem]['yellow'] if player.yellow + \
-        golems_cards[golem]['yellow'] > -1 else False
+        golems_cards[golem]['yellow'] > -1 else None
 
     green = golems_cards[golem]['green'] if player.green + \
-        golems_cards[golem]['green'] > -1 else False
+        golems_cards[golem]['green'] > -1 else None
 
     blue = golems_cards[golem]['blue'] if player.blue + \
-        golems_cards[golem]['blue'] > -1 else False
+        golems_cards[golem]['blue'] > -1 else None
 
     pink = golems_cards[golem]['pink'] if player.pink + \
-        golems_cards[golem]['pink'] > -1 else False
+        golems_cards[golem]['pink'] > -1 else None
 
     print(yellow, green, blue, pink)
 
-    # if crystal_validation([yellow, green, blue, pink], player) != False:
-    if yellow and green and blue and pink != False:
+    # If the crystals pass check, remove the golem and add the golem points to the player's points.
+    if yellow and green and blue and pink != None:
         player.update_yellow(yellow)
         player.update_green(green)
         player.update_blue(blue)
         player.update_pink(pink)
-        player.update_golems()
-        points = golems_cards[golem]['points']
+
+        player.update_golems(1)
+
+        # Updating player's points and golem count.
+        points = golems_cards[golem]['points'] + \
+            golems_cards[golem]['copper_coins'] + \
+            golems_cards[golem]['silver_coins']
         player.update_points(points)
+
         print(
             f'Congratulations! Player {player.name} captured {golem} that is worth {points} points.')
         golem_board.remove(golem)
-    else:
+    elif yellow or green or blue or pink == False:
         print('Sorry, you do not meet the golem requirements. \nMissing requirements:')
         if yellow == False:
             print(
@@ -362,22 +368,22 @@ def claim_action_card(board, player):
         if board.actions_board_crystals[card_index]['yellow'] > 0:
             player.update_yellow(
                 board.actions_board_crystals[card_index]['yellow'])
-            board.actions_board[card_index]['yellow'] = 0
+            board.actions_board_crystals[card_index]['yellow'] = 0
 
         if board.actions_board_crystals[card_index]['green'] > 0:
             player.update_green(
                 board.actions_board_crystals[card_index]['green'])
-            board.actions_board[card_index]['green'] = 0
+            board.actions_board_crystals[card_index]['green'] = 0
 
         if board.actions_board_crystals[card_index]['blue'] > 0:
             player.update_blue(
                 board.actions_board_crystals[card_index]['blue'])
-            board.actions_board[card_index]['blue'] = 0
+            board.actions_board_crystals[card_index]['blue'] = 0
 
         if board.actions_board_crystals[card_index]['pink'] > 0:
             player.update_pink(
                 board.actions_board_crystals[card_index]['pink'])
-            board.actions_board[card_index]['pink'] = 0
+            board.actions_board_crystals[card_index]['pink'] = 0
         # Removing the claimed action card from the action board.
         del board.actions_board[card_index]
     else:

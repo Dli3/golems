@@ -35,8 +35,8 @@ class Player():
         self.crystal_capacity += pink
         return self.pink
 
-    def update_golems(self):
-        self.golems += 1
+    def update_golems(self, num_of_golem):
+        self.golems += num_of_golem
         return self.golems
 
     def update_points(self, points):
