@@ -162,19 +162,19 @@ def action_card(player, action_key):
         actions_dict['upgrade2'](player)
     else:
         yellow = actions_dict[action_key][0] if p_yellow + \
-            actions_dict[action_key][0] > -1 else False
+            actions_dict[action_key][0] >= 0 else 'Negative'
 
         green = actions_dict[action_key][1] if p_green + \
-            actions_dict[action_key][1] > -1 else False
+            actions_dict[action_key][1] >= 0 else 'Negative'
 
         blue = actions_dict[action_key][2] if p_blue + \
-            actions_dict[action_key][2] > -1 else False
+            actions_dict[action_key][2] >= 0 else 'Negative'
 
         pink = actions_dict[action_key][3] if p_pink + \
-            actions_dict[action_key][3] > -1 else False
+            actions_dict[action_key][3] >= 0 else 'Negative'
 
         if crystal_validation(
-                actions_dict[action_key], player) != False:
+                actions_dict[action_key], player) != 'Negative':
             player.update_yellow(yellow)
             player.update_green(green)
             player.update_blue(blue)
@@ -239,38 +239,30 @@ def capture_golem(board, player):
     golem_board = board.golems_board
     print(golem_board)
     golem_index = None
-    while golem_index != int and golem_index not in range(0, 5):
-        try:
-            golem_index = int(input(
-                f'Which golem would you like to claim? Please enter the index between 0 and {len(golem_board)-1}.\n'))
-            if golem_index not in range(0, 5):
-                continue
-        except ValueError:
-            print(
-                f'ERROR: Please enter valid input between 0-{len(golem_board)}.')
-            continue
-        break
+    while golem_index != int and golem_index not in range(len(golem_board)):
+        golem_index = int(input(
+            f'Which golem would you like to claim? Please enter the index between 0 and {len(golem_board)-1}.\n'))
 
     golem = golem_board[golem_index]
     print(f'\nAttempting to capture golem {golem}.')
     print('......')
 
     yellow = golems_cards[golem]['yellow'] if player.yellow + \
-        golems_cards[golem]['yellow'] > -1 else None
+        golems_cards[golem]['yellow'] >= 0 else 'Negative'
 
     green = golems_cards[golem]['green'] if player.green + \
-        golems_cards[golem]['green'] > -1 else None
+        golems_cards[golem]['green'] >= 0 else 'Negative'
 
     blue = golems_cards[golem]['blue'] if player.blue + \
-        golems_cards[golem]['blue'] > -1 else None
+        golems_cards[golem]['blue'] >= 0 else 'Negative'
 
     pink = golems_cards[golem]['pink'] if player.pink + \
-        golems_cards[golem]['pink'] > -1 else None
+        golems_cards[golem]['pink'] >= 0 else 'Negative'
 
     print(yellow, green, blue, pink)
 
     # If the crystals pass check, remove the golem and add the golem points to the player's points.
-    if yellow and green and blue and pink != None:
+    if yellow or green or blue or pink != 'Negative':
         player.update_yellow(yellow)
         player.update_green(green)
         player.update_blue(blue)
@@ -287,18 +279,18 @@ def capture_golem(board, player):
         print(
             f'Congratulations! Player {player.name} captured {golem} that is worth {points} points.')
         golem_board.remove(golem)
-    elif yellow or green or blue or pink == False:
+    elif yellow or green or blue or pink == 'Negative':
         print('Sorry, you do not meet the golem requirements. \nMissing requirements:')
-        if yellow == False:
+        if yellow == 'Negative':
             print(
                 f'{str(player.yellow + golems_cards[golem]["yellow"])} Yellow Crystals')
-        if green == False:
+        if green == 'Negative':
             print(
                 f'{str(player.green + golems_cards[golem]["green"])} Green Crystals')
-        if blue == False:
+        if blue == 'Negative':
             print(
                 f'{str(player.blue + golems_cards[golem]["blue"])} Blue Crystals')
-        if pink == False:
+        if pink == 'Negative':
             print(
                 f'{str(player.pink + golems_cards[golem]["pink"])} Pink Crystals')
         return False

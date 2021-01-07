@@ -27,17 +27,30 @@ def main():
                 print(f"\n<===== PLAYER {player.name}'s TURN ======>")
                 print(board.board_state())
                 print(player.check_player_status())
+
+                # Verifying Board state.
+                board.check_golem_board()
+                board.check_actions_board()
+
+                # Player takes their turn.
                 take_a_turn(board, player)
             else:
                 for player in players:
                     if player.golems != 5:
                         last_round.append(player)
 
+    # A player has reached 5 golems - Remaining players gets 1 last turn.
     for player in last_round:
         print(player)
         print(f"\n<===== PLAYER {player.name}'s TURN ======>")
         print(board.board_state())
         print(player.check_player_status())
+
+        # Verifying Board state.
+        board.check_golem_board()
+        board.check_actions_board()
+
+        # Player takes their turn.
         take_a_turn(board, player)
 
     # Counting up the player's points.

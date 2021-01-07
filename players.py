@@ -204,3 +204,4 @@ class Player():
         print(f'Points: {self.points}')
         print(f'Hand: {self.hand}')
         print(f'Discard pile: {self.discard_pile}')
+        print('\n')
