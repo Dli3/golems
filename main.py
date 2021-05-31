@@ -15,12 +15,6 @@ def main():
 
     last_round = []
 
-    for player in players:
-        player.update_yellow(50)
-        player.update_green(50)
-        player.update_pink(50)
-        player.update_blue(50)
-
     while check_max_golems(players) != 5:
         for player in players:
             if check_max_golems(players) != 5:
